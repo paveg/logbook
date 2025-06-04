@@ -33,12 +33,6 @@ const articleKeywords = [
       author={author}
     />
     <style>
-      main {
-        width: 100%;
-        max-width: 42rem;
-        margin: 0 auto;
-        padding: var(--space-xl) var(--space-lg);
-      }
       .hero-image {
         width: 100%;
         margin-bottom: var(--space-xl);
@@ -84,9 +78,6 @@ const articleKeywords = [
         display: none;
       }
       @media (max-width: 720px) {
-        main {
-          padding: var(--space-lg) var(--space-md);
-        }
         .title h1 {
           font-size: var(--font-size-2xl);
         }
@@ -97,28 +88,30 @@ const articleKeywords = [
   <body>
     <Header />
     <main>
-      <article>
-        <div class="hero-image">
-          {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-        </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
-            </div>
-            <h1>{title}</h1>
-            <hr />
+      <div class="container">
+        <article>
+          <div class="hero-image">
+            {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
           </div>
-          <slot />
-        </div>
-      </article>
+          <div class="prose">
+            <div class="title">
+              <div class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <div class="last-updated-on">
+                      Last updated on <FormattedDate date={updatedDate} />
+                    </div>
+                  )
+                }
+              </div>
+              <h1>{title}</h1>
+              <hr />
+            </div>
+            <slot />
+          </div>
+        </article>
+      </div>
     </main>
     <Footer />
   </body>
