@@ -29,13 +29,13 @@
   --space-lg: 2rem;
   --space-xl: 4rem;
 
-  /* Typography scale */
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.5rem;
-  --font-size-2xl: 2rem;
-  --font-size-3xl: 2.5rem;
+  /* Typography scale - ensuring minimum 16px for mobile */
+  --font-size-sm: 0.875rem; /* 14px - only for small elements */
+  --font-size-base: 1rem; /* 16px - safe for mobile */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-2xl: 2rem; /* 32px */
+  --font-size-3xl: 2.5rem; /* 40px */
 
   /* Line heights */
   --line-height-tight: 1.25;
@@ -102,6 +102,10 @@ body {
   line-height: var(--line-height-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Prevent zoom on input focus (iOS Safari) */
+  -webkit-text-size-adjust: 100%;
+  /* Prevent horizontal scrolling */
+  overflow-x: hidden;
 }
 /* Main layout handled by individual pages */
 h1,
@@ -207,9 +211,22 @@ hr {
   border-top: 1px solid var(--color-border);
   margin: var(--space-xl) 0;
 }
+/* Mobile-specific optimizations */
 @media (max-width: 720px) {
+  body {
+    /* Ensure minimum 16px font size to prevent zoom on iOS */
+    font-size: max(var(--font-size-base), 16px);
+  }
+  
   h1 {
     font-size: var(--font-size-2xl);
+  }
+  
+  /* Ensure form inputs don't trigger zoom */
+  input,
+  textarea,
+  select {
+    font-size: max(var(--font-size-base), 16px);
   }
 }
 
