@@ -17,6 +17,9 @@ dependencies:
   astro:
     specifier: ^5.8.1
     version: 5.8.1(typescript@5.8.3)
+  reading-time:
+    specifier: ^1.5.0
+    version: 1.5.0
 
 devDependencies:
   '@lhci/cli':
@@ -4760,6 +4763,10 @@ packages:
   /readdirp@4.1.2:
     resolution: {integrity: sha512-GDhwkLfywWL2s6vEjyhri+eXmfH6j1L7JE27WhqLeYzoh/A3DBaYGEj2H/HFZCn/kMfim73FXxEJTw06WtxQwg==}
     engines: {node: '>= 14.18.0'}
+    dev: false
+
+  /reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
     dev: false
 
   /recma-build-jsx@1.0.0:

@@ -1,0 +1,39 @@
+---
+export interface Props {
+  minutes: number;
+}
+
+const { minutes } = Astro.props;
+---
+
+<span class="reading-time">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="15"
+    height="15"
+    viewBox="0 0 15 15"
+    fill="none"
+    class="timer-icon"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M7.50009 0.877014C3.84241 0.877014 0.877258 3.84216 0.877258 7.49984C0.877258 11.1575 3.8424 14.1227 7.50009 14.1227C11.1578 14.1227 14.1229 11.1575 14.1229 7.49984C14.1229 3.84216 11.1577 0.877014 7.50009 0.877014ZM1.82726 7.49984C1.82726 4.36683 4.36708 1.82701 7.50009 1.82701C10.6331 1.82701 13.1729 4.36683 13.1729 7.49984C13.1729 10.6328 10.6331 13.1727 7.50009 13.1727C4.36708 13.1727 1.82726 10.6328 1.82726 7.49984ZM8 4.50002C8 4.22388 7.77614 4.00002 7.5 4.00002C7.22386 4.00002 7 4.22388 7 4.50002V7.50002H4.5C4.22386 7.50002 4 7.72388 4 8.00002C4 8.27615 4.22386 8.50002 4.5 8.50002H7.5C7.63261 8.50002 7.75979 8.44735 7.85355 8.35358C7.94732 8.25981 8 8.13263 8 8.00002V4.50002Z"
+      fill="currentColor"></path>
+  </svg>
+  {minutes} min read
+</span>
+
+<style>
+  .reading-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+  }
+
+  .timer-icon {
+    opacity: 0.8;
+  }
+</style>
