@@ -18,21 +18,26 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         width: 100%;
         max-width: 42rem;
         margin: 0 auto;
-        padding: var(--space-xl) var(--space-lg);
+        padding: 0;
       }
       .hero-image {
-        width: 100%;
+        width: 100vw;
+        margin-left: 50%;
+        transform: translateX(-50%);
         margin-bottom: var(--space-xl);
         text-align: center;
       }
       .hero-image img {
         display: block;
         width: 100%;
-        max-width: 100%;
+        max-width: 42rem;
         height: auto;
         margin: 0 auto;
         border-radius: 0;
         box-shadow: none;
+      }
+      .content {
+        padding: var(--space-xl) var(--space-lg);
       }
       .prose {
         width: 100%;
@@ -66,7 +71,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         display: none;
       }
       @media (max-width: 720px) {
-        main {
+        .content {
           padding: var(--space-lg) var(--space-md);
         }
         .title h1 {
@@ -83,22 +88,24 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
         <div class="hero-image">
           {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
         </div>
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={pubDate} />
-              {
-                updatedDate && (
-                  <div class="last-updated-on">
-                    Last updated on <FormattedDate date={updatedDate} />
-                  </div>
-                )
-              }
+        <div class="content">
+          <div class="prose">
+            <div class="title">
+              <div class="date">
+                <FormattedDate date={pubDate} />
+                {
+                  updatedDate && (
+                    <div class="last-updated-on">
+                      Last updated on <FormattedDate date={updatedDate} />
+                    </div>
+                  )
+                }
+              </div>
+              <h1>{title}</h1>
+              <hr />
             </div>
-            <h1>{title}</h1>
-            <hr />
+            <slot />
           </div>
-          <slot />
         </div>
       </article>
     </main>
