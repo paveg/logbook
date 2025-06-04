@@ -1,25 +1,16 @@
-# Astro Starter Kit: Blog
+# Logbook
 
-```sh
-pnpm create astro@latest -- --template blog
-```
+A minimal, accessible blog built with Astro featuring dark mode support and clean typography.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
-
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+- ✅ **Minimal & Clean Design** - Monochrome base with subtle rounded corners
+- ✅ **Dark Mode Support** - Auto-detection with manual toggle and localStorage persistence
+- ✅ **Accessibility First** - WCAG AA compliant colors, proper focus states, color-blind friendly
+- ✅ **Japanese Language Support** - Optimized for Japanese content with proper typography
+- ✅ **Developer Experience** - ESLint, Prettier, GitHub Actions for code quality
+- ✅ **Performance Optimized** - 100/100 Lighthouse scores with system fonts
+- ✅ **SEO Ready** - Canonical URLs, OpenGraph data, sitemap, and RSS feed
+- ✅ **Content Collections** - Type-safe frontmatter with Astro's content system
+- ✅ **Responsive Design** - Mobile-first approach with clean breakpoints
 
 ## 🚀 Project Structure
 
@@ -56,13 +47,44 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm lint`            | Run ESLint to check code quality                 |
+| `pnpm lint:fix`        | Run ESLint and automatically fix issues          |
+| `pnpm format`          | Format all files with Prettier                   |
+| `pnpm format:check`    | Check if files are formatted correctly           |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
+## 🎨 Design Philosophy
+
+This blog follows a minimal design approach with focus on:
+
+- **Readability** - System fonts and optimal line heights for comfortable reading
+- **Accessibility** - High contrast ratios and keyboard navigation support
+- **Performance** - No unnecessary JavaScript or heavy assets
+- **Maintainability** - Clean code structure with consistent CSS variables
+
+## 🌙 Dark Mode
+
+The blog includes a comprehensive dark mode implementation:
+
+- Automatic detection of system preference (`prefers-color-scheme`)
+- Manual toggle with animated sun/moon icons
+- Persistent user preference via localStorage
+- WCAG AA compliant color combinations in both themes
+
+## 🚀 Deployment
+
+This is a static site that can be deployed to any static hosting service:
+
+- **Cloudflare Pages** - Recommended for optimal performance
+- **Netlify** - Easy deployment with Git integration
+- **Vercel** - Great for automatic deployments
+- **GitHub Pages** - Free hosting for public repositories
+
 ## 👀 Want to learn more?
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Check out [Astro documentation](https://docs.astro.build) to learn more about the framework.
 
-## Credit
+## 📄 License
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+This project is based on the Astro Blog template and inspired by [Bear Blog](https://github.com/HermanMartinus/bearblog/).
