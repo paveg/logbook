@@ -43,9 +43,10 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 
 ### Deployment
 
-- Configured for Cloudflare Pages via `@astrojs/cloudflare` adapter
-- Static output mode
+- Static site generation (SSG) mode
+- Compatible with any static hosting provider (Cloudflare Pages, Netlify, Vercel, etc.)
 - Sitemap and RSS generation enabled
+- No server-side rendering required
 
 ## Git Workflow
 
