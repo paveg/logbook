@@ -145,6 +145,7 @@ img {
   height: auto;
   border-radius: var(--border-radius-sm);
   display: block;
+  margin: 0 auto;
 }
 code {
   padding: var(--space-xs) var(--space-sm);
