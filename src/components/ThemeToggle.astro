@@ -8,7 +8,17 @@
   aria-label="テーマを切り替え"
   title="テーマを切り替え"
 >
-  <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg
+    class="sun-icon"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
     <circle cx="12" cy="12" r="5"></circle>
     <line x1="12" y1="1" x2="12" y2="3"></line>
     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -19,7 +29,17 @@
     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
   </svg>
-  <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg
+    class="moon-icon"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
   </svg>
 </button>
@@ -30,15 +50,17 @@
     border: none;
     color: var(--color-text-light);
     cursor: pointer;
-    padding: var(--space-sm);
+    padding: var(--space-xs);
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: auto;
+    height: auto;
+    font-size: var(--font-size-sm);
+    line-height: 1;
   }
 
   .theme-toggle:hover {
@@ -83,7 +105,7 @@
 <script>
   // Theme management
   const THEME_KEY = 'theme-preference';
-  
+
   // Get theme preference
   function getThemePreference() {
     if (typeof localStorage !== 'undefined' && localStorage.getItem(THEME_KEY)) {
@@ -99,7 +121,7 @@
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
-    
+
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(THEME_KEY, theme);
     }
@@ -116,7 +138,7 @@
   function initializeTheme() {
     const theme = getThemePreference();
     setTheme(theme);
-    
+
     // Add click event listener
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
