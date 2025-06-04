@@ -52,16 +52,19 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 ### Branch Strategy
 
 1. **NEVER push directly to main branch** - main branch への直接pushは禁止
-2. **Always create a feature branch** for any work:
+2. **Always start from latest main branch**:
    ```bash
+   git checkout main
+   git pull origin main
    git checkout -b feature/description-of-work
    ```
-3. **Commit frequently** with meaningful commit messages
-4. **Before finishing work**, always:
+3. **Reuse existing feature branches** when changes are related to avoid creating too many branches
+4. **Commit frequently** with meaningful commit messages
+5. **Before finishing work**, always:
    - Run `pnpm lint` and fix any issues
    - Run `pnpm format` to ensure consistent formatting
    - Commit these changes if any files were modified
-5. **Push the feature branch**:
+6. **Push the feature branch**:
    ```bash
    git push -u origin feature/description-of-work
    ```
@@ -69,22 +72,28 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 ### Workflow Example
 
 ```bash
-# 1. Create and checkout feature branch
-git checkout -b feature/add-new-blog-post
+# 1. Always start from latest main
+git checkout main
+git pull origin main
 
-# 2. Make changes and commit regularly
+# 2. Create feature branch
+git checkout -b feature/add-new-blog-post
+# OR continue on existing related branch
+git checkout feature/existing-related-work
+
+# 3. Make changes and commit regularly
 git add .
 git commit -m "Add new blog post about TypeScript"
 
-# 3. Before finishing, run lint and format
+# 4. Before finishing, run lint and format
 pnpm lint
 pnpm format
 
-# 4. Commit any formatting changes
+# 5. Commit any formatting changes
 git add .
 git commit -m "Apply lint and format fixes"
 
-# 5. Push feature branch
+# 6. Push feature branch
 git push -u origin feature/add-new-blog-post
 ```
 
