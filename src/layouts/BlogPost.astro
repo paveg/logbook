@@ -3,11 +3,12 @@ import type { CollectionEntry } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
+import BlogMetadata from '../components/BlogMetadata.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & { readingTime?: number };
 
-const { title, description, pubDate, updatedDate, heroImage, keywords, author, tags } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, keywords, author, tags, readingTime } =
+  Astro.props;
 
 // Format dates for structured data
 const publishedTime = pubDate.toISOString();
@@ -64,16 +65,6 @@ const articleKeywords = [
         letter-spacing: -0.02em;
         line-height: var(--line-height-tight);
       }
-      .date {
-        margin-bottom: var(--space-sm);
-        color: var(--color-text-light);
-        font-size: var(--font-size-sm);
-      }
-      .last-updated-on {
-        font-style: normal;
-        color: var(--color-text-light);
-        font-size: var(--font-size-sm);
-      }
       hr {
         display: none;
       }
@@ -95,17 +86,8 @@ const articleKeywords = [
           </div>
           <div class="prose">
             <div class="title">
-              <div class="date">
-                <FormattedDate date={pubDate} />
-                {
-                  updatedDate && (
-                    <div class="last-updated-on">
-                      Last updated on <FormattedDate date={updatedDate} />
-                    </div>
-                  )
-                }
-              </div>
               <h1>{title}</h1>
+              <BlogMetadata pubDate={pubDate} readingTime={readingTime} updatedDate={updatedDate} />
               <hr />
             </div>
             <slot />
