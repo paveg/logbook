@@ -9,6 +9,19 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <html lang="ja">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      main {
+        width: 100%;
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
+      }
+      @media (max-width: 720px) {
+        main {
+          padding: var(--space-lg) var(--space-md);
+        }
+      }
+    </style>
   </head>
   <body>
     <Header />

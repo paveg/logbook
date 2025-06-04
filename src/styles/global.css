@@ -67,12 +67,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-main {
-  width: 100%;
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: var(--space-xl) var(--space-lg);
-}
+/* Main layout handled by individual pages */
 h1,
 h2,
 h3,
@@ -177,9 +172,6 @@ hr {
   margin: var(--space-xl) 0;
 }
 @media (max-width: 720px) {
-  main {
-    padding: var(--space-lg) var(--space-md);
-  }
   h1 {
     font-size: var(--font-size-2xl);
   }
