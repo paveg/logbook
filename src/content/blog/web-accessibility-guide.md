@@ -6,7 +6,7 @@ heroImage: '/blog-placeholder-2.jpg'
 keywords: 'ウェブアクセシビリティ, WCAG, バリアフリー, インクルーシブデザイン, HTML, CSS, JavaScript'
 tags: ['アクセシビリティ', 'ウェブデザイン', 'HTML', 'CSS', 'WCAG']
 category: 'tutorial'
-author: 'paveg'
+author: 'funai'
 readingTime: 8
 ---
 

@@ -6,7 +6,7 @@ heroImage: '/blog-placeholder-1.jpg'
 keywords: 'markdown, syntax, guide, documentation, astro, formatting'
 tags: ['markdown', 'documentation', 'guide', 'astro']
 category: 'tutorial'
-author: 'paveg'
+author: 'funai'
 readingTime: 5
 ---
 
