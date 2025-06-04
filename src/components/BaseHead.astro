@@ -2,7 +2,13 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR, SITE_KEYWORDS, TWITTER_HANDLE } from '../consts';
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  SITE_AUTHOR,
+  SITE_KEYWORDS,
+  TWITTER_HANDLE,
+} from '../consts';
 
 interface Props {
   title: string;
@@ -99,25 +105,25 @@ const imageURL = new URL(image, Astro.site).toString();
 <meta name="msapplication-TileColor" content="#f5f5f5" />
 
 <!-- JSON-LD Structured Data -->
-<script type="application/ld+json">
-{
-  JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": article ? "BlogPosting" : "WebSite",
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': article ? 'BlogPosting' : 'WebSite',
     ...(article
       ? {
           headline: title,
           description: description,
           author: {
-            "@type": "Person",
+            '@type': 'Person',
             name: author,
             url: `https://github.com/${author}`,
           },
           publisher: {
-            "@type": "Organization",
+            '@type': 'Organization',
             name: SITE_TITLE,
             logo: {
-              "@type": "ImageObject",
+              '@type': 'ImageObject',
               url: new URL('/favicon.svg', Astro.site),
             },
           },
@@ -126,8 +132,8 @@ const imageURL = new URL(image, Astro.site).toString();
           datePublished: publishedTime,
           dateModified: modifiedTime || publishedTime,
           mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": canonicalURL,
+            '@type': 'WebPage',
+            '@id': canonicalURL,
           },
         }
       : {
@@ -135,19 +141,18 @@ const imageURL = new URL(image, Astro.site).toString();
           description: SITE_DESCRIPTION,
           url: Astro.site,
           author: {
-            "@type": "Person",
+            '@type': 'Person',
             name: SITE_AUTHOR,
             url: `https://github.com/${SITE_AUTHOR}`,
           },
           potentialAction: {
-            "@type": "SearchAction",
+            '@type': 'SearchAction',
             target: {
-              "@type": "EntryPoint",
+              '@type': 'EntryPoint',
               urlTemplate: `${Astro.site}?q={search_term_string}`,
             },
-            "query-input": "required name=search_term_string",
+            'query-input': 'required name=search_term_string',
           },
         }),
-  })
-}
-</script>
+  })}
+/>

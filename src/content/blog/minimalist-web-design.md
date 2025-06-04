@@ -67,7 +67,7 @@ readingTime: 6
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2rem;
-  
+
   /* 行間の設定 */
   --line-height-tight: 1.2;
   --line-height-normal: 1.6;
@@ -75,13 +75,13 @@ readingTime: 6
 }
 
 /* 見出しの階層を明確に */
-h1 { 
+h1 {
   font-size: var(--font-size-3xl);
   line-height: var(--line-height-tight);
   font-weight: 300;
 }
 
-h2 { 
+h2 {
   font-size: var(--font-size-2xl);
   line-height: var(--line-height-tight);
   font-weight: 400;
@@ -108,15 +108,21 @@ p {
   --color-background: #ffffff;
   --color-surface: #f8f9fa;
   --color-border: #e9ecef;
-  
+
   /* アクセントカラーは1色のみ */
   --color-accent: #007bff;
 }
 
 /* 色に意味を持たせる */
-.text-primary { color: var(--color-primary); }
-.text-secondary { color: var(--color-secondary); }
-.text-muted { color: var(--color-tertiary); }
+.text-primary {
+  color: var(--color-primary);
+}
+.text-secondary {
+  color: var(--color-secondary);
+}
+.text-muted {
+  color: var(--color-tertiary);
+}
 
 /* アクセントカラーは重要な要素にのみ使用 */
 .link-primary {
@@ -243,7 +249,7 @@ p {
   --space-md: 1rem;
   --space-lg: 2rem;
   --space-xl: 3rem;
-  
+
   /* ボーダーラジウス */
   --border-radius-sm: 2px;
   --border-radius-md: 4px;

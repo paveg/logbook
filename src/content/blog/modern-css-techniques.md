@@ -31,11 +31,11 @@ Container Queriesは、親要素のサイズに基づいてスタイルを適用
     display: flex;
     gap: 1rem;
   }
-  
+
   .card-image {
     flex: 0 0 120px;
   }
-  
+
   .card-content {
     flex: 1;
   }
@@ -45,7 +45,7 @@ Container Queriesは、親要素のサイズに基づいてスタイルを適用
   .card {
     display: block;
   }
-  
+
   .card-image {
     width: 100%;
     margin-bottom: 1rem;
@@ -61,7 +61,7 @@ Container Queriesは、親要素のサイズに基づいてスタイルを適用
   <main class="main-content">
     <div class="card-container">
       <article class="card">
-        <img src="image.jpg" alt="サンプル画像" class="card-image">
+        <img src="image.jpg" alt="サンプル画像" class="card-image" />
         <div class="card-content">
           <h2 class="card-title">記事タイトル</h2>
           <p class="card-description">記事の説明文...</p>
@@ -96,7 +96,7 @@ Container Queriesは、親要素のサイズに基づいてスタイルを適用
     padding: 2rem;
     border-radius: 12px;
   }
-  
+
   .card-title {
     font-size: 1.5rem;
   }
@@ -107,7 +107,7 @@ Container Queriesは、親要素のサイズに基づいてスタイルを適用
     padding: 1rem;
     border-radius: 8px;
   }
-  
+
   .card-title {
     font-size: 1.125rem;
   }
@@ -143,23 +143,23 @@ Subgridを使用することで、ネストしたグリッドアイテムを親�
 ```html
 <div class="product-grid">
   <article class="product-card">
-    <img src="product1.jpg" alt="商品1" class="product-image">
+    <img src="product1.jpg" alt="商品1" class="product-image" />
     <div class="product-info">
       <h3 class="product-title">商品名がとても長い場合でも美しく表示</h3>
       <p class="product-price">¥1,200</p>
     </div>
     <button class="product-action">カートに追加</button>
   </article>
-  
+
   <article class="product-card">
-    <img src="product2.jpg" alt="商品2" class="product-image">
+    <img src="product2.jpg" alt="商品2" class="product-image" />
     <div class="product-info">
       <h3 class="product-title">短いタイトル</h3>
       <p class="product-price">¥800</p>
     </div>
     <button class="product-action">カートに追加</button>
   </article>
-  
+
   <!-- 他の商品カード... -->
 </div>
 ```
@@ -215,21 +215,27 @@ CSS変数の動的な操作により、より柔軟なデザインシステム�
   /* ベースカラー */
   --hue: 220;
   --saturation: 100%;
-  
+
   /* 計算されたカラーパレット */
   --color-primary: hsl(var(--hue), var(--saturation), 50%);
   --color-primary-light: hsl(var(--hue), var(--saturation), 70%);
   --color-primary-dark: hsl(var(--hue), var(--saturation), 30%);
-  
+
   /* アルファ値を使った透明度 */
   --color-primary-10: hsl(var(--hue), var(--saturation), 50% / 0.1);
   --color-primary-20: hsl(var(--hue), var(--saturation), 50% / 0.2);
 }
 
 /* JavaScriptから動的に変更可能 */
-.theme-blue { --hue: 220; }
-.theme-green { --hue: 120; }
-.theme-purple { --hue: 280; }
+.theme-blue {
+  --hue: 220;
+}
+.theme-green {
+  --hue: 120;
+}
+.theme-purple {
+  --hue: 280;
+}
 
 /* 使用例 */
 .button {
@@ -314,11 +320,11 @@ CSS変数の動的な操作により、より柔軟なデザインシステム�
 .card {
   /* 従来: margin: 1rem 0; */
   margin-block: 1rem;
-  
+
   /* 従来: padding: 1rem 2rem; */
   padding-block: 1rem;
   padding-inline: 2rem;
-  
+
   /* 従来: border-top: 1px solid #eee; */
   border-block-start: 1px solid #eee;
 }
@@ -326,7 +332,7 @@ CSS変数の動的な操作により、より柔軟なデザインシステム�
 .navigation-item {
   /* 従来: margin-right: 1rem; */
   margin-inline-end: 1rem;
-  
+
   /* 従来: padding-left: 0.5rem; */
   padding-inline-start: 0.5rem;
 }
@@ -344,14 +350,14 @@ CSS.registerProperty({
   name: '--rotation-angle',
   syntax: '<angle>',
   initialValue: '0deg',
-  inherits: false
+  inherits: false,
 });
 
 CSS.registerProperty({
   name: '--progress',
   syntax: '<percentage>',
   initialValue: '0%',
-  inherits: false
+  inherits: false,
 });
 ```
 
@@ -370,15 +376,11 @@ CSS.registerProperty({
 /* プログレスバーの実装 */
 .progress-bar {
   --progress: 0%;
-  background: linear-gradient(
-    to right,
-    #3b82f6 var(--progress),
-    #e5e7eb var(--progress)
-  );
+  background: linear-gradient(to right, #3b82f6 var(--progress), #e5e7eb var(--progress));
   transition: --progress 0.3s ease;
 }
 
-.progress-bar[data-progress="75"] {
+.progress-bar[data-progress='75'] {
   --progress: 75%;
 }
 ```
@@ -395,13 +397,13 @@ class GradientBorderPainter {
   paint(ctx, geometry, properties) {
     const borderWidth = parseInt(properties.get('--border-width').toString()) || 2;
     const colors = properties.get('--gradient-colors').toString().split(',');
-    
+
     // グラデーションボーダーの描画
     const gradient = ctx.createLinearGradient(0, 0, geometry.width, 0);
     colors.forEach((color, index) => {
       gradient.addColorStop(index / (colors.length - 1), color.trim());
     });
-    
+
     ctx.strokeStyle = gradient;
     ctx.lineWidth = borderWidth;
     ctx.strokeRect(0, 0, geometry.width, geometry.height);
@@ -417,7 +419,7 @@ registerPaint('gradient-border', GradientBorderPainter);
   .custom-border {
     --border-width: 3;
     --gradient-colors: #ff6b6b, #4ecdc4, #45b7d1;
-    
+
     background: paint(gradient-border);
     border: none;
     padding: 1rem;
@@ -455,7 +457,7 @@ registerPaint('gradient-border', GradientBorderPainter);
   .responsive-component {
     container-type: inline-size;
   }
-  
+
   @container (min-width: 400px) {
     .component-child {
       /* Container Queries対応スタイル */

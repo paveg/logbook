@@ -16,7 +16,7 @@ const modifiedTime = updatedDate?.toISOString() || publishedTime;
 // Create keywords string from tags and custom keywords
 const articleKeywords = [
   ...(tags || []),
-  ...(keywords ? keywords.split(',').map(k => k.trim()) : [])
+  ...(keywords ? keywords.split(',').map((k) => k.trim()) : []),
 ].join(', ');
 ---
 

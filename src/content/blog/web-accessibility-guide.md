@@ -76,9 +76,7 @@ button:focus {
 <form>
   <label for="email">メールアドレス（必須）</label>
   <input type="email" id="email" required aria-describedby="email-error" />
-  <div id="email-error" role="alert" aria-live="polite">
-    正しいメールアドレスを入力してください
-  </div>
+  <div id="email-error" role="alert" aria-live="polite">正しいメールアドレスを入力してください</div>
 </form>
 ```
 
