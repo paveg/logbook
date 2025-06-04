@@ -6,7 +6,7 @@ heroImage: '/blog-placeholder-3.jpg'
 keywords: 'ミニマルデザイン, ウェブデザイン, UX, UI, シンプル, レスポンシブ'
 tags: ['デザイン', 'ミニマリズム', 'UX', 'CSS', 'タイポグラフィ']
 category: 'design'
-author: 'paveg'
+author: 'funai'
 readingTime: 6
 ---
 

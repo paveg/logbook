@@ -4,7 +4,7 @@ description: 'AstroブログでJSON-LD構造化データを実装してSEOを向
 pubDate: 2024-03-15
 heroImage: '/first-place.jpg'
 keywords: 'JSON-LD, Astro, SEO, 構造化データ, Schema.org, リッチリザルト'
-author: 'paveg'
+author: 'funai'
 tags: ['Astro', 'SEO', 'JSON-LD', 'Web開発']
 category: '技術記事'
 ---

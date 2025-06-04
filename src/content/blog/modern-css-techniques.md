@@ -6,7 +6,7 @@ heroImage: '/blog-placeholder-4.jpg'
 keywords: 'CSS, Container Queries, Subgrid, CSS Houdini, モダンCSS, フロントエンド'
 tags: ['CSS', 'フロントエンド', 'モダン', 'レスポンシブ', 'Grid']
 category: 'technology'
-author: 'paveg'
+author: 'funai'
 readingTime: 10
 ---
 

@@ -18,7 +18,7 @@ heroImage: '/blog-placeholder-1.jpg' # Optional: path to hero image
 keywords: 'keyword1, keyword2, keyword3' # Optional: SEO keywords
 tags: ['tag1', 'tag2', 'tag3'] # Optional: categorization tags
 category: 'technology' # Optional: main category
-author: 'paveg' # Optional: author name (defaults to site author)
+author: 'funai' # Optional: author name (defaults to site author)
 readingTime: 5 # Optional: estimated reading time in minutes
 draft: false # Optional: set to true to exclude from production
 ---
