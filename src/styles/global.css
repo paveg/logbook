@@ -5,7 +5,7 @@
  */
 
 :root {
-  /* Monochrome base colors */
+  /* Light mode colors */
   --color-bg: #ffffff;
   --color-text: #1a1a1a;
   --color-text-light: #666666;
@@ -49,6 +49,42 @@
 
   /* No shadows for minimal design */
   --box-shadow: none;
+}
+
+/* Dark mode colors */
+[data-theme='dark'] {
+  --color-bg: #0f0f0f;
+  --color-text: #e5e5e5;
+  --color-text-light: #a3a3a3;
+  --color-border: #2a2a2a;
+  --color-bg-alt: #1a1a1a;
+
+  /* Accessible accent color for dark mode */
+  --color-accent: #4d9fff;
+  --color-accent-hover: #66b3ff;
+
+  /* Color blind friendly colors for dark mode */
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+}
+
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-bg: #0f0f0f;
+    --color-text: #e5e5e5;
+    --color-text-light: #a3a3a3;
+    --color-border: #2a2a2a;
+    --color-bg-alt: #1a1a1a;
+
+    --color-accent: #4d9fff;
+    --color-accent-hover: #66b3ff;
+
+    --color-success: #4ade80;
+    --color-warning: #fbbf24;
+    --color-error: #f87171;
+  }
 }
 /* System font stack for optimal readability and performance */
 body {
