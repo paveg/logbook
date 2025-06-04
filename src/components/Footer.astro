@@ -33,6 +33,18 @@ const today = new Date();
     text-align: center;
     border-top: 1px solid var(--color-border);
     font-size: var(--font-size-sm);
+    /* Ensure consistent border appearance */
+    position: relative;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--color-border);
   }
   .social-links {
     display: flex;
