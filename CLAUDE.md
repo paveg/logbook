@@ -54,18 +54,19 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 
 1. **NEVER push directly to main branch** - main branch への直接pushは禁止
 2. **Always start from latest main branch**:
+
    ```bash
    git checkout main
    git pull origin main
    git checkout -b feature/description-of-work
    ```
+
 3. **Reuse existing feature branches** when changes are related to avoid creating too many branches
 4. **Commit frequently** with meaningful commit messages
 5. **Before finishing work**, always:
    - Run `pnpm lint` and fix any issues
-   - Run `pnpm format` to ensure consistent formatting
-   - Commit these changes if any files were modified
 6. **Push the feature branch**:
+
    ```bash
    git push -u origin feature/description-of-work
    ```
