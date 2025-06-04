@@ -47,10 +47,10 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
 | `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm lint`            | Run ESLint to check code quality                |
-| `pnpm lint:fix`        | Run ESLint and automatically fix issues         |
-| `pnpm format`          | Format all files with Prettier                  |
-| `pnpm format:check`    | Check if files are formatted correctly          |
+| `pnpm lint`            | Run ESLint to check code quality                 |
+| `pnpm lint:fix`        | Run ESLint and automatically fix issues          |
+| `pnpm format`          | Format all files with Prettier                   |
+| `pnpm format:check`    | Check if files are formatted correctly           |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
@@ -59,7 +59,7 @@ All commands are run from the root of the project, from a terminal:
 This blog follows a minimal design approach with focus on:
 
 - **Readability** - System fonts and optimal line heights for comfortable reading
-- **Accessibility** - High contrast ratios and keyboard navigation support  
+- **Accessibility** - High contrast ratios and keyboard navigation support
 - **Performance** - No unnecessary JavaScript or heavy assets
 - **Maintainability** - Clean code structure with consistent CSS variables
 
