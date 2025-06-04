@@ -11,9 +11,9 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "lighthouse": "lhci autorun",
-    "lighthouse:collect": "lhci collect",
-    "lighthouse:assert": "lhci assert"
+    "lighthouse": "lhci autorun --config=./lighthouserc.cjs",
+    "lighthouse:collect": "lhci collect --config=./lighthouserc.cjs",
+    "lighthouse:assert": "lhci assert --config=./lighthouserc.cjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.0",
