@@ -37,23 +37,21 @@ import { SITE_TITLE } from '../consts';
 </header>
 <style>
   header {
-    margin: 0;
-    padding: 0;
+    width: 100%;
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border);
-    /* Add subtle background on border to prevent cut-off appearance */
     position: relative;
   }
   
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--color-border);
-    /* Ensures border extends full width */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    position: relative;
   }
   
   h2 {
@@ -72,18 +70,6 @@ import { SITE_TITLE } from '../consts';
   h2 a:hover {
     color: var(--color-text);
     border-bottom: none;
-  }
-
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 42rem;
-    margin: 0 auto;
-    padding: var(--space-lg);
-    /* Center the navigation content properly */
-    position: relative;
-    z-index: 1;
   }
 
   .internal-links {
@@ -123,13 +109,11 @@ import { SITE_TITLE } from '../consts';
     
     h2 {
       font-size: var(--font-size-base);
-      /* Ensure title doesn't take too much space */
       flex: 0 0 auto;
     }
     
     .internal-links {
       gap: var(--space-sm);
-      /* Allow navigation to wrap if needed */
       flex: 1 1 auto;
       justify-content: center;
       order: 3;
@@ -138,7 +122,6 @@ import { SITE_TITLE } from '../consts';
     }
     
     .social-links {
-      /* Position theme toggle on the right */
       flex: 0 0 auto;
       order: 2;
     }
@@ -152,7 +135,6 @@ import { SITE_TITLE } from '../consts';
     }
   }
   
-  /* Even smaller screens */
   @media (max-width: 480px) {
     nav {
       padding: var(--space-sm);

@@ -87,8 +87,9 @@ const posts = (await getCollection('blog')).sort(
   <body>
     <Header />
     <main>
-      <section>
-        <ul>
+      <div class="container">
+        <section>
+          <ul>
           {
             posts.map((post) => (
               <li>
@@ -104,8 +105,9 @@ const posts = (await getCollection('blog')).sort(
               </li>
             ))
           }
-        </ul>
-      </section>
+          </ul>
+        </section>
+      </div>
     </main>
     <Footer />
   </body>
