@@ -1,0 +1,38 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+import { render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.flatMap((post) => {
+    const year = post.data.pubDate.getFullYear();
+    const paths = [];
+
+    // 新形式: /blog/YYYY/slug (2023年以降)
+    if (year >= 2023) {
+      paths.push({
+        params: { segments: `${year}/${post.id}` },
+        props: post,
+      });
+    }
+
+    // 旧形式維持: /blog/slug (既存記事用)
+    paths.push({
+      params: { segments: post.id },
+      props: post,
+    });
+
+    return paths;
+  });
+}
+
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data}>
+  <Content />
+</BlogPost>
