@@ -116,26 +116,54 @@ import { SITE_TITLE } from '../consts';
 
   @media (max-width: 720px) {
     nav {
-      padding: var(--space-lg) var(--space-md);
+      padding: var(--space-md);
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+    
+    h2 {
+      font-size: var(--font-size-base);
+      /* Ensure title doesn't take too much space */
+      flex: 0 0 auto;
     }
     
     .internal-links {
-      gap: var(--space-md);
+      gap: var(--space-sm);
+      /* Allow navigation to wrap if needed */
+      flex: 1 1 auto;
+      justify-content: center;
+      order: 3;
+      width: 100%;
+      margin-top: var(--space-sm);
+    }
+    
+    .social-links {
+      /* Position theme toggle on the right */
+      flex: 0 0 auto;
+      order: 2;
     }
     
     .social-links a {
       display: none;
     }
     
-    .social-links {
-      gap: 0;
-      /* Ensure theme toggle is properly aligned */
-      min-width: 44px;
-      justify-content: center;
-    }
-    
     .social-links :global(.theme-toggle) {
       display: flex;
+    }
+  }
+  
+  /* Even smaller screens */
+  @media (max-width: 480px) {
+    nav {
+      padding: var(--space-sm);
+    }
+    
+    h2 {
+      font-size: var(--font-size-sm);
+    }
+    
+    .internal-links {
+      gap: var(--space-xs);
     }
   }
 </style>

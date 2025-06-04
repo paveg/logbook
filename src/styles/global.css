@@ -255,6 +255,21 @@ hr {
   }
 }
 
+/* Small mobile screens */
+@media (max-width: 480px) {
+  main {
+    padding: var(--space-md) var(--space-sm);
+  }
+  
+  h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  h2 {
+    font-size: var(--font-size-lg);
+  }
+}
+
 .sr-only {
   border: 0;
   padding: 0;
