@@ -14,10 +14,7 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      customPages: [
-        'https://logbook-a9n.pages.dev/',
-        'https://logbook-a9n.pages.dev/blog/',
-      ],
+      customPages: ['https://logbook-a9n.pages.dev/', 'https://logbook-a9n.pages.dev/blog/'],
     }),
   ],
 });
