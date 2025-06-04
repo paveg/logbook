@@ -65,6 +65,8 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 4. **Commit frequently** with meaningful commit messages
 5. **Before finishing work**, always:
    - Run `pnpm lint` and fix any issues
+   - Run `pnpm format` to ensure consistent formatting
+   - Commit these changes if any files were modified
 6. **Push the feature branch**:
 
    ```bash
