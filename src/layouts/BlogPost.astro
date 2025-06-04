@@ -15,41 +15,59 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
     <BaseHead title={title} description={description} />
     <style>
       main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
+        width: 100%;
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: var(--space-xl) var(--space-lg);
       }
       .hero-image {
         width: 100%;
+        margin-bottom: var(--space-xl);
       }
       .hero-image img {
         display: block;
         margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
+        border-radius: 0;
+        box-shadow: none;
       }
       .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        color: var(--color-text);
       }
       .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
+        margin-bottom: var(--space-xl);
+        padding: 0;
+        text-align: left;
       }
       .title h1 {
-        margin: 0 0 0.5em 0;
+        margin: 0 0 var(--space-md) 0;
+        font-size: var(--font-size-3xl);
+        font-weight: 300;
+        letter-spacing: -0.02em;
+        line-height: var(--line-height-tight);
       }
       .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
+        margin-bottom: var(--space-sm);
+        color: var(--color-text-light);
+        font-size: var(--font-size-sm);
       }
       .last-updated-on {
-        font-style: italic;
+        font-style: normal;
+        color: var(--color-text-light);
+        font-size: var(--font-size-sm);
+      }
+      hr {
+        display: none;
+      }
+      @media (max-width: 720px) {
+        main {
+          padding: var(--space-lg) var(--space-md);
+        }
+        .title h1 {
+          font-size: var(--font-size-2xl);
+        }
       }
     </style>
   </head>
