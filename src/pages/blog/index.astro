@@ -20,9 +20,6 @@ const posts = (await getCollection('blog')).sort(
         width: 100%;
         max-width: 42rem;
         margin: 0 auto;
-        padding: 0;
-      }
-      .content {
         padding: var(--space-xl) var(--space-lg);
       }
       ul {
@@ -47,22 +44,16 @@ const posts = (await getCollection('blog')).sort(
         border-bottom: none;
       }
       .blog-image {
-        width: 100vw;
-        margin-left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
         margin-bottom: var(--space-md);
         text-align: center;
       }
       .blog-image img {
         display: block;
         width: 100%;
-        max-width: 42rem;
         height: auto;
         margin: 0 auto;
         border-radius: var(--border-radius-sm);
-      }
-      .blog-content {
-        padding: 0 var(--space-lg);
       }
       .title {
         margin: 0 0 var(--space-sm) 0;
@@ -81,11 +72,8 @@ const posts = (await getCollection('blog')).sort(
         color: var(--color-accent);
       }
       @media (max-width: 720px) {
-        .content {
+        main {
           padding: var(--space-lg) var(--space-md);
-        }
-        .blog-content {
-          padding: 0 var(--space-md);
         }
         ul li {
           margin-bottom: var(--space-lg);
@@ -100,29 +88,25 @@ const posts = (await getCollection('blog')).sort(
   <body>
     <Header />
     <main>
-      <div class="content">
-        <section>
-          <ul>
-            {
-              posts.map((post) => (
-                <li>
-                  <a href={`/blog/${post.id}/`}>
-                    <div class="blog-image">
-                      <img width={720} height={360} src={post.data.heroImage} alt="" />
-                    </div>
-                    <div class="blog-content">
-                      <h4 class="title">{post.data.title}</h4>
-                      <p class="date">
-                        <FormattedDate date={post.data.pubDate} />
-                      </p>
-                    </div>
-                  </a>
-                </li>
-              ))
-            }
-          </ul>
-        </section>
-      </div>
+      <section>
+        <ul>
+          {
+            posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}/`}>
+                  <div class="blog-image">
+                    <img width={720} height={360} src={post.data.heroImage} alt="" />
+                  </div>
+                  <h4 class="title">{post.data.title}</h4>
+                  <p class="date">
+                    <FormattedDate date={post.data.pubDate} />
+                  </p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
     </main>
     <Footer />
   </body>
