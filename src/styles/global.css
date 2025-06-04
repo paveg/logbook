@@ -250,19 +250,19 @@ hr {
     /* Ensure minimum 16px font size to prevent zoom on iOS */
     font-size: max(var(--font-size-base), 16px);
   }
-  
+
   .container {
     padding: 0 var(--space-md);
   }
-  
+
   main {
     padding: var(--space-lg) 0;
   }
-  
+
   h1 {
     font-size: var(--font-size-2xl);
   }
-  
+
   /* Ensure form inputs don't trigger zoom */
   input,
   textarea,
@@ -276,15 +276,15 @@ hr {
   .container {
     padding: 0 var(--space-sm);
   }
-  
+
   main {
     padding: var(--space-md) 0;
   }
-  
+
   h1 {
     font-size: var(--font-size-xl);
   }
-  
+
   h2 {
     font-size: var(--font-size-lg);
   }

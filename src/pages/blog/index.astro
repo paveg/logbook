@@ -51,7 +51,7 @@ const posts = (await getCollection('blog')).sort(
         /* Add subtle transition for hover effect */
         transition: transform 0.2s ease;
       }
-      
+
       .title {
         margin: 0 0 var(--space-sm) 0;
         color: var(--color-text);
@@ -60,7 +60,7 @@ const posts = (await getCollection('blog')).sort(
         font-weight: 500;
         transition: color 0.2s ease;
       }
-      
+
       /* Add subtle hover effects */
       ul li a:hover .blog-image img {
         transform: translateY(-2px);
@@ -90,21 +90,21 @@ const posts = (await getCollection('blog')).sort(
       <div class="container">
         <section>
           <ul>
-          {
-            posts.map((post) => (
-              <li>
-                <a href={`/blog/${post.id}/`}>
-                  <div class="blog-image">
-                    <img width={720} height={360} src={post.data.heroImage} alt="" />
-                  </div>
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
-                    <FormattedDate date={post.data.pubDate} />
-                  </p>
-                </a>
-              </li>
-            ))
-          }
+            {
+              posts.map((post) => (
+                <li>
+                  <a href={`/blog/${post.id}/`}>
+                    <div class="blog-image">
+                      <img width={720} height={360} src={post.data.heroImage} alt="" />
+                    </div>
+                    <h4 class="title">{post.data.title}</h4>
+                    <p class="date">
+                      <FormattedDate date={post.data.pubDate} />
+                    </p>
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </section>
       </div>
