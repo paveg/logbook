@@ -42,6 +42,11 @@
   --line-height-base: 1.6;
   --line-height-relaxed: 1.75;
 
+  /* Subtle border radius for gentle softness */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  
   /* No shadows for minimal design */
   --box-shadow: none;
 }
@@ -138,13 +143,13 @@ table {
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 0;
+  border-radius: var(--border-radius-sm);
   display: block;
 }
 code {
   padding: var(--space-xs) var(--space-sm);
   background-color: var(--color-bg-alt);
-  border-radius: 0;
+  border-radius: var(--border-radius-sm);
   font-size: 0.9em;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
 }
@@ -152,7 +157,7 @@ pre {
   padding: var(--space-lg);
   background-color: var(--color-bg-alt);
   border-left: 2px solid var(--color-border);
-  border-radius: 0;
+  border-radius: var(--border-radius-sm);
   overflow-x: auto;
 }
 pre > code {
