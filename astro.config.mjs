@@ -6,7 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  site: 'https://logbook.paveg.dev',
+  site: 'https://logbook-a9n.pages.dev',
   integrations: [
     mdx(),
     sitemap({
@@ -14,6 +14,18 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      customPages: [
+        {
+          url: 'https://logbook-a9n.pages.dev/',
+          changefreq: 'daily',
+          priority: 1.0,
+        },
+        {
+          url: 'https://logbook-a9n.pages.dev/blog/',
+          changefreq: 'daily',
+          priority: 0.9,
+        },
+      ],
     }),
   ],
 });
