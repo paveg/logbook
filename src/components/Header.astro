@@ -13,7 +13,6 @@ import { SITE_TITLE } from '../consts';
       <HeaderLink href="/about">About</HeaderLink>
     </div>
     <div class="social-links">
-      <ThemeToggle />
       <a href="https://twitter.com/paveg" target="_blank">
         <span class="sr-only">Follow Me on Twitter</span>
         <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32"
@@ -32,6 +31,7 @@ import { SITE_TITLE } from '../consts';
           ></path></svg
         >
       </a>
+      <ThemeToggle />
     </div>
   </nav>
 </header>
@@ -76,7 +76,8 @@ import { SITE_TITLE } from '../consts';
 
   .social-links {
     display: flex;
-    gap: var(--space-md);
+    gap: var(--space-sm);
+    align-items: center;
   }
 
   .social-links a {
@@ -102,6 +103,9 @@ import { SITE_TITLE } from '../consts';
     }
     .social-links a {
       display: none;
+    }
+    .social-links {
+      gap: 0;
     }
     .social-links :global(.theme-toggle) {
       display: flex;
