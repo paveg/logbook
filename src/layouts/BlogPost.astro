@@ -7,12 +7,31 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, keywords, author, tags } = Astro.props;
+
+// Format dates for structured data
+const publishedTime = pubDate.toISOString();
+const modifiedTime = updatedDate?.toISOString() || publishedTime;
+
+// Create keywords string from tags and custom keywords
+const articleKeywords = [
+  ...(tags || []),
+  ...(keywords ? keywords.split(',').map(k => k.trim()) : [])
+].join(', ');
 ---
 
 <html lang="ja">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead
+      title={title}
+      description={description}
+      image={heroImage}
+      article={true}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      keywords={articleKeywords}
+      author={author}
+    />
     <style>
       main {
         width: 100%;

@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://logbook.paveg.dev/sitemap-index.xml
+
+# Block crawling of admin or sensitive areas (if any in the future)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow common crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Crawl-delay for well-behaved bots
+Crawl-delay: 1
