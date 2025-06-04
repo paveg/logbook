@@ -11,9 +11,11 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 - **Development**: `pnpm dev` - Starts dev server at localhost:4321
 - **Build**: `pnpm build` - Builds static site to ./dist/
 - **Preview**: `pnpm preview` - Preview production build locally
+- **Lint**: `pnpm lint` - Run ESLint to check code quality
+- **Lint Fix**: `pnpm lint:fix` - Run ESLint and automatically fix issues
+- **Format**: `pnpm format` - Format all files with Prettier
+- **Format Check**: `pnpm format:check` - Check if files are formatted correctly
 - **Deploy**: Uses Cloudflare Pages (wrangler available)
-
-Note: No linting or test commands are currently configured.
 
 ## Architecture
 
