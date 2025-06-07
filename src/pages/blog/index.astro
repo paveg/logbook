@@ -88,7 +88,7 @@ const posts = (await getCollection('blog')).sort(
           <ul>
             {
               posts.map((post) => {
-                const stats = readingTime(post.body);
+                const stats = readingTime(post.body || '');
                 const readingTimeMinutes = Math.ceil(stats.minutes);
                 return (
                   <li>

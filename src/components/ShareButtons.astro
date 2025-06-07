@@ -1,0 +1,103 @@
+---
+interface Props {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+
+// URL encode the parameters
+const encodedTitle = encodeURIComponent(title);
+const encodedUrl = encodeURIComponent(url);
+
+// Social media share URLs
+const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodedUrl}`;
+---
+
+<div class="share-buttons">
+  <a
+    href={twitterShareUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="share-button"
+    aria-label="Xでシェア"
+    title="Xでシェア"
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <path
+        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+      ></path>
+    </svg>
+  </a>
+  <a
+    href={hatenaShareUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="share-button hatena"
+    aria-label="はてなブックマークに追加"
+    title="はてなブックマークに追加"
+  >
+    <span class="hatena-icon">B!</span>
+  </a>
+</div>
+
+<style>
+  .share-buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    background-color: transparent;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .share-button:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+    transform: scale(1.05);
+  }
+
+  .share-button:active {
+    transform: scale(0.98);
+  }
+
+  .share-button svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .hatena-icon {
+    font-weight: bold;
+    font-size: 0.875rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.05em;
+  }
+
+  /* Dark mode handled by CSS variables */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) .share-button:hover {
+      color: var(--color-text);
+      border-color: var(--color-text);
+    }
+  }
+
+  html.dark .share-button:hover {
+    color: var(--color-text);
+    border-color: var(--color-text);
+  }
+</style>
