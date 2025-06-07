@@ -74,9 +74,61 @@ const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
       hr {
         display: none;
       }
+
+      /* スムーススクロール */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* 見出しアンカーリンクのスタイル */
+      .prose h2,
+      .prose h3 {
+        position: relative;
+        scroll-margin-top: 2rem;
+      }
+
+      .prose h2:hover .anchor-link,
+      .prose h3:hover .anchor-link {
+        opacity: 1;
+      }
+
+      .anchor-link {
+        position: absolute;
+        left: -1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0;
+        color: var(--color-text-light);
+        text-decoration: none;
+        font-weight: normal;
+        transition: opacity 0.2s ease;
+        border-bottom: none;
+        width: 1.25rem;
+        height: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .anchor-link:hover {
+        color: var(--color-text);
+        border-bottom: none;
+      }
+
       @media (max-width: 720px) {
         .title h1 {
           font-size: var(--font-size-2xl);
+        }
+
+        .anchor-link {
+          left: -1.25rem;
+          width: 1rem;
+          height: 1rem;
+        }
+
+        .prose h2,
+        .prose h3 {
+          scroll-margin-top: 1rem;
         }
       }
     </style>
@@ -126,5 +178,32 @@ const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
       </div>
     </main>
     <Footer />
+
+    <script>
+      // 見出しにアンカーリンクを追加
+      function addAnchorLinks() {
+        const headings = document.querySelectorAll('.prose h2[id], .prose h3[id]');
+
+        headings.forEach((heading) => {
+          const id = heading.getAttribute('id');
+          if (!id) return;
+
+          const anchor = document.createElement('a');
+          anchor.href = `#${id}`;
+          anchor.className = 'anchor-link';
+          anchor.setAttribute('aria-label', `${heading.textContent}へのリンク`);
+          anchor.innerHTML = '#';
+
+          heading.appendChild(anchor);
+        });
+      }
+
+      // DOM読み込み完了後に実行
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addAnchorLinks);
+      } else {
+        addAnchorLinks();
+      }
+    </script>
   </body>
 </html>
