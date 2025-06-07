@@ -34,10 +34,10 @@ const post = Astro.props;
 const { Content } = await render(post);
 
 // Calculate reading time
-const stats = readingTime(post.body);
+const stats = readingTime(post.body || '');
 const readingTimeMinutes = Math.ceil(stats.minutes);
 ---
 
-<BlogPost {...post.data} readingTime={readingTimeMinutes}>
+<BlogPost {...post.data} readingTime={readingTimeMinutes} slug={post.id}>
   <Content />
 </BlogPost>

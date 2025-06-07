@@ -3,6 +3,13 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import BlogMetadata from '../components/BlogMetadata.astro';
+import readingTime from 'reading-time';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <!doctype html>
@@ -10,22 +17,65 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
-      main {
-        /* Add minimum height for better visual balance */
-        min-height: 60vh;
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        margin-bottom: var(--space-xl);
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: var(--space-xl);
+      }
+      ul li:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      ul li a {
+        display: block;
+        text-decoration: none;
+      }
+      ul li a:hover {
+        border-bottom: none;
+      }
+      .blog-image {
+        width: 100%;
+        margin-bottom: var(--space-md);
+        text-align: center;
+      }
+      .blog-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+        border-radius: var(--border-radius-sm);
+        /* Add subtle transition for hover effect */
+        transition: transform 0.2s ease;
       }
 
-      h1 {
-        margin-top: 0;
-        margin-bottom: var(--space-lg);
+      .title {
+        margin: 0 0 var(--space-sm) 0;
         color: var(--color-text);
-        font-weight: 300;
-        letter-spacing: -0.02em;
+        line-height: var(--line-height-tight);
+        font-size: var(--font-size-xl);
+        font-weight: 500;
+        transition: color 0.2s ease;
       }
 
+      /* Add subtle hover effects */
+      ul li a:hover .blog-image img {
+        transform: translateY(-2px);
+      }
+      ul li a:hover .title {
+        color: var(--color-accent);
+      }
       @media (max-width: 720px) {
-        main {
-          min-height: 50vh;
+        ul li {
+          margin-bottom: var(--space-lg);
+          padding-bottom: var(--space-lg);
+        }
+        .title {
+          font-size: var(--font-size-lg);
         }
       }
     </style>
@@ -34,7 +84,27 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
     <Header />
     <main>
       <div class="container">
-        <h1>Hello, Logbook!</h1>
+        <section>
+          <ul>
+            {
+              posts.map((post) => {
+                const stats = readingTime(post.body || '');
+                const readingTimeMinutes = Math.ceil(stats.minutes);
+                return (
+                  <li>
+                    <a href={`/blog/${post.id}/`}>
+                      <div class="blog-image">
+                        <img width={720} height={360} src={post.data.heroImage} alt="" />
+                      </div>
+                      <h4 class="title">{post.data.title}</h4>
+                      <BlogMetadata pubDate={post.data.pubDate} readingTime={readingTimeMinutes} />
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </section>
       </div>
     </main>
     <Footer />

@@ -10,8 +10,8 @@
 >
   <svg
     class="sun-icon"
-    width="16"
-    height="16"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -31,8 +31,8 @@
   </svg>
   <svg
     class="moon-icon"
-    width="16"
-    height="16"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -51,6 +51,7 @@
     color: var(--color-text-light);
     cursor: pointer;
     padding: var(--space-xs);
+    margin-left: var(--space-sm);
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
     position: relative;
@@ -79,7 +80,7 @@
     transition: all 0.2s ease;
   }
 
-  /* Default state - show sun (for light mode) */
+  /* ライトモード時：太陽アイコンを表示 */
   .sun-icon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
@@ -90,13 +91,24 @@
     transform: rotate(90deg) scale(0.8);
   }
 
-  /* Dark mode state - show moon */
-  [data-theme='dark'] .sun-icon {
+  /* ダークモード時：月アイコンを表示 */
+  html.dark .sun-icon {
     opacity: 0;
     transform: rotate(90deg) scale(0.8);
   }
 
-  [data-theme='dark'] .moon-icon {
+  html.dark .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* data-theme属性による制御 */
+  html[data-theme='dark'] .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.8);
+  }
+
+  html[data-theme='dark'] .moon-icon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
@@ -115,11 +127,13 @@
   }
 
   // Set theme
-  function setTheme(theme) {
+  function setTheme(theme: string) {
     if (theme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('dark');
     }
 
     if (typeof localStorage !== 'undefined') {
@@ -137,7 +151,9 @@
   // Initialize theme on page load
   function initializeTheme() {
     const theme = getThemePreference();
-    setTheme(theme);
+    if (theme) {
+      setTheme(theme);
+    }
 
     // Add click event listener
     const themeToggle = document.getElementById('theme-toggle');

@@ -1,0 +1,77 @@
+---
+interface Props {
+  items: Array<{
+    label: string;
+    href?: string;
+  }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="パンくずリスト" class="breadcrumb">
+  {
+    items.map((item, index) => (
+      <>
+        {item.href ? (
+          <a href={item.href}>{item.label}</a>
+        ) : (
+          <span aria-current="page">{item.label}</span>
+        )}
+        {index < items.length - 1 && (
+          <span class="separator" aria-hidden="true">
+            /
+          </span>
+        )}
+      </>
+    ))
+  }
+</nav>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items
+      .map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.label,
+        item: item.href ? new URL(item.href, Astro.site).href : undefined,
+      }))
+      .filter((item) => item.item),
+  })}
+/>
+
+<style>
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
+  }
+
+  a {
+    color: var(--color-text-light);
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+
+  a:hover {
+    color: var(--color-text);
+  }
+
+  .separator {
+    margin: 0 0.625rem;
+    color: var(--color-text-light);
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  span[aria-current='page'] {
+    color: var(--color-text);
+  }
+</style>

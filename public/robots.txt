@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://logbook.paveg.dev/sitemap-index.xml
+Sitemap: https://logbook-a9n.pages.dev/sitemap-index.xml
 
 # Block crawling of admin or sensitive areas (if any in the future)
 # Disallow: /admin/
