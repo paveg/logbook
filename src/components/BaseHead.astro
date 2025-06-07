@@ -9,6 +9,7 @@ import {
   SITE_KEYWORDS,
   TWITTER_HANDLE,
 } from '../consts';
+import GoogleAnalytics from './GoogleAnalytics.astro';
 
 interface Props {
   title: string;
@@ -165,3 +166,6 @@ const imageURL = new URL(image, Astro.site).toString();
         }),
   })}
 />
+
+<!-- Google Analytics -->
+<GoogleAnalytics />

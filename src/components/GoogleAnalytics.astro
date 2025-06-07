@@ -1,0 +1,35 @@
+---
+export interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+
+// 環境変数またはpropsからGoogle Analytics IDを取得
+const GA_MEASUREMENT_ID = id || import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
+
+// 本番環境でのみGoogle Analyticsを有効化
+const isProd = import.meta.env.PROD;
+---
+
+{
+  isProd && GA_MEASUREMENT_ID && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      <script
+        set:html={`
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', '${GA_MEASUREMENT_ID}', {
+          anonymize_ip: true,
+          allow_google_signals: false,
+          allow_ad_personalization_signals: false,
+        });
+      `}
+      />
+    </>
+  )
+}
