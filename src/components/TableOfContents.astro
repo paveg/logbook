@@ -1,0 +1,220 @@
+---
+interface Props {
+  headings: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+}
+
+const { headings } = Astro.props;
+
+// h2とh3のみを表示する目次を作成
+const tocHeadings = headings.filter((heading) => heading.depth <= 3 && heading.depth >= 2);
+---
+
+{
+  tocHeadings.length > 0 && (
+    <aside class="table-of-contents">
+      <div class="toc-container">
+        <button class="toc-toggle" aria-label="Show/hide table of contents">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+          <span class="toc-label">Contents</span>
+        </button>
+        <nav class="toc-nav" aria-label="Table of contents">
+          <ul class="toc-list">
+            {tocHeadings.map((heading) => (
+              <li class={`toc-item toc-level-${heading.depth}`}>
+                <a href={`#${heading.slug}`} class="toc-link">
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </aside>
+  )
+}
+
+<style>
+  .table-of-contents {
+    position: relative;
+  }
+
+  /* モバイル: 折りたたみ式 */
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    margin-bottom: var(--space-md);
+  }
+
+  .toc-toggle:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-light);
+  }
+
+  .toc-nav {
+    display: none;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    padding: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .toc-nav.show {
+    display: block;
+  }
+
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .toc-item {
+    margin: 0;
+    padding: 0;
+  }
+
+  .toc-level-2 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .toc-level-3 {
+    margin-left: var(--space-md);
+    margin-bottom: var(--space-xs);
+  }
+
+  .toc-link {
+    display: block;
+    color: var(--color-text-light);
+    text-decoration: none;
+    padding: var(--space-xs) 0;
+    line-height: var(--line-height-base);
+    transition: color 0.15s ease;
+    border-bottom: none;
+    font-size: var(--font-size-sm);
+  }
+
+  .toc-link:hover {
+    color: var(--color-text);
+    border-bottom: none;
+  }
+
+  .toc-level-3 .toc-link {
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
+
+  /* デスクトップ: サイドバー */
+  @media (min-width: 1200px) {
+    .table-of-contents {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      width: 240px;
+      max-height: 60vh;
+      overflow-y: auto;
+      z-index: 10;
+    }
+
+    .toc-toggle {
+      display: none;
+    }
+
+    .toc-nav {
+      display: block !important;
+      margin-bottom: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .toc-nav::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .toc-nav::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .toc-nav::-webkit-scrollbar-thumb {
+      background: var(--color-border);
+      border-radius: 2px;
+    }
+
+    .toc-nav::-webkit-scrollbar-thumb:hover {
+      background: var(--color-text-light);
+    }
+  }
+
+  /* タブレット: インライン表示 */
+  @media (min-width: 721px) and (max-width: 1199px) {
+    .toc-toggle {
+      display: none;
+    }
+
+    .toc-nav {
+      display: block !important;
+      max-width: 100%;
+    }
+  }
+</style>
+
+<script>
+  // Table of contents toggle functionality
+  function initTableOfContents() {
+    const toggle = document.querySelector('.toc-toggle');
+    const nav = document.querySelector('.toc-nav');
+
+    if (!toggle || !nav) return;
+
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+      const isOpen = nav.classList.contains('show');
+      toggle.setAttribute('aria-expanded', isOpen.toString());
+    });
+
+    // Close table of contents when link is clicked (mobile)
+    const links = nav.querySelectorAll('.toc-link');
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth < 721) {
+          nav.classList.remove('show');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
+  // DOM読み込み完了後に実行
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTableOfContents);
+  } else {
+    initTableOfContents();
+  }
+</script>
