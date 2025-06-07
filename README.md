@@ -1,90 +1,127 @@
 # Logbook
 
-A minimal, accessible blog built with Astro featuring dark mode support and clean typography.
+A minimal and modern blog built with Astro, featuring dark mode, optimized performance, and SEO-friendly design.
 
-- ✅ **Minimal & Clean Design** - Monochrome base with subtle rounded corners
-- ✅ **Dark Mode Support** - Auto-detection with manual toggle and localStorage persistence
-- ✅ **Accessibility First** - WCAG AA compliant colors, proper focus states, color-blind friendly
-- ✅ **Japanese Language Support** - Optimized for Japanese content with proper typography
-- ✅ **Developer Experience** - ESLint, Prettier, GitHub Actions for code quality
-- ✅ **Performance Optimized** - 100/100 Lighthouse scores with system fonts
-- ✅ **SEO Ready** - Canonical URLs, OpenGraph data, sitemap, and RSS feed
-- ✅ **Content Collections** - Type-safe frontmatter with Astro's content system
-- ✅ **Responsive Design** - Mobile-first approach with clean breakpoints
+## 🚀 Features
 
-## 🚀 Project Structure
+- **Static Site Generation** with Astro v5.8.1
+- **Dark/Light Mode Toggle** with system preference detection
+- **SEO Optimized** with structured data (JSON-LD) and meta tags
+- **Performance Focused** with Core Web Vitals optimization
+- **Responsive Design** with mobile-first approach
+- **RSS Feed** support
+- **Reading Time** calculation
+- **Social Sharing** buttons (X, Hatena Bookmark)
+- **Accessible** design following WCAG guidelines
 
-Inside of your Astro project, you'll see the following folders and files:
+## 🛠️ Tech Stack
 
-```text
-├── public/
-├── src/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+- **Framework**: [Astro](https://astro.build/)
+- **Styling**: CSS with custom properties
+- **Content**: Markdown/MDX with content collections
+- **Deployment**: Cloudflare Pages
+- **Performance**: Lighthouse CI integration
+
+## 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/paveg/logbook.git
+cd logbook
+
+# Install dependencies
+pnpm install
+
+# Start development server
+pnpm dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🚀 Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command           | Action                                       |
+| ----------------- | -------------------------------------------- |
+| `pnpm dev`        | Start development server at `localhost:4321` |
+| `pnpm build`      | Build production site to `./dist/`           |
+| `pnpm preview`    | Preview production build locally             |
+| `pnpm lint`       | Run ESLint                                   |
+| `pnpm format`     | Format code with Prettier                    |
+| `pnpm lighthouse` | Run Lighthouse CI tests                      |
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## 📁 Project Structure
 
-Any static assets, like images, can be placed in the `public/` directory.
+```
+src/
+├── components/          # Reusable Astro components
+├── content/
+│   └── blog/           # Blog posts (Markdown/MDX)
+├── layouts/            # Page layouts
+├── pages/              # File-based routing
+│   ├── blog/           # Blog-related pages
+│   ├── about.astro     # About page
+│   ├── privacy.astro   # Privacy policy
+│   └── rss.xml.js      # RSS feed generation
+└── styles/             # Global styles
+```
 
-## 🧞 Commands
+## ✍️ Writing Blog Posts
 
-All commands are run from the root of the project, from a terminal:
+Create new blog posts in `src/content/blog/` using Markdown or MDX:
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm lint`            | Run ESLint to check code quality                 |
-| `pnpm lint:fix`        | Run ESLint and automatically fix issues          |
-| `pnpm format`          | Format all files with Prettier                   |
-| `pnpm format:check`    | Check if files are formatted correctly           |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+```markdown
+---
+title: 'Your Post Title'
+description: 'Brief description of your post'
+pubDate: 2024-01-01
+heroImage: '/path/to/image.jpg'
+tags: ['tag1', 'tag2']
+---
 
-## 🎨 Design Philosophy
+Your content here...
+```
 
-This blog follows a minimal design approach with focus on:
+## 🎨 Customization
 
-- **Readability** - System fonts and optimal line heights for comfortable reading
-- **Accessibility** - High contrast ratios and keyboard navigation support
-- **Performance** - No unnecessary JavaScript or heavy assets
-- **Maintainability** - Clean code structure with consistent CSS variables
+- **Site Configuration**: Edit `src/consts.ts`
+- **Styling**: Modify CSS custom properties in `src/styles/global.css`
+- **Components**: Customize components in `src/components/`
 
-## 🌙 Dark Mode
+## 📈 Performance
 
-The blog includes a comprehensive dark mode implementation:
+This blog is optimized for performance with:
 
-- Automatic detection of system preference (`prefers-color-scheme`)
-- Manual toggle with animated sun/moon icons
-- Persistent user preference via localStorage
-- WCAG AA compliant color combinations in both themes
-
-## 🚀 Deployment
-
-This is a static site that can be deployed to any static hosting service:
-
-- **Cloudflare Pages** - Recommended for optimal performance
-- **Netlify** - Easy deployment with Git integration
-- **Vercel** - Great for automatic deployments
-- **GitHub Pages** - Free hosting for public repositories
-
-## 👀 Want to learn more?
-
-Check out [Astro documentation](https://docs.astro.build) to learn more about the framework.
+- Static site generation
+- Optimized images with WebP format
+- Minimal JavaScript
+- CSS custom properties for theming
+- Lighthouse CI integration for monitoring
 
 ## 📄 License
 
-This project is based on the Astro Blog template and inspired by [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+This project uses a dual license structure:
+
+- **Software/Code**: [MIT License](LICENSE) - Feel free to use, modify, and distribute the code
+- **Blog Content**: All Rights Reserved - Blog posts and articles are protected by copyright
+
+See the [LICENSE](LICENSE) file for full details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request for:
+
+- Bug fixes
+- Feature improvements
+- Documentation updates
+- Performance optimizations
+
+Note: Contributions should focus on the software/technical aspects. Blog content remains under the author's copyright.
+
+## 📞 Contact
+
+- **Author**: funai
+- **X (Twitter)**: [@paveg\_](https://twitter.com/paveg_)
+- **GitHub**: [@paveg](https://github.com/paveg)
+- **Website**: [Logbook](https://logbook-a9n.pages.dev)
+
+---
+
+Built with ❤️ using [Astro](https://astro.build/)
