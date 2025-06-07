@@ -15,21 +15,21 @@ const isProd = import.meta.env.PROD;
 {
   isProd && GA_MEASUREMENT_ID && (
     <>
-      <!-- Google tag (gtag.js) -->
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
-      <script define:vars={{ GA_MEASUREMENT_ID }}>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      <script
+        set:html={`
         window.dataLayer = window.dataLayer || [];
         function gtag() {
           dataLayer.push(arguments);
         }
         gtag('js', new Date());
-        gtag('config', GA_MEASUREMENT_ID, {
-          // プライバシー設定
+        gtag('config', '${GA_MEASUREMENT_ID}', {
           anonymize_ip: true,
           allow_google_signals: false,
           allow_ad_personalization_signals: false,
         });
-      </script>
+      `}
+      />
     </>
   )
 }
