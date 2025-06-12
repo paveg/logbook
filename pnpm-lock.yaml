@@ -17,6 +17,12 @@ dependencies:
   '@astrojs/sitemap':
     specifier: ^3.4.0
     version: 3.4.0
+  '@fontsource/m-plus-rounded-1c':
+    specifier: ^5.2.6
+    version: 5.2.6
+  '@fontsource/roboto-mono':
+    specifier: ^5.2.6
+    version: 5.2.6
   '@vercel/og':
     specifier: ^0.6.8
     version: 0.6.8
@@ -590,6 +596,14 @@ packages:
       '@eslint/core': 0.14.0
       levn: 0.4.1
     dev: true
+
+  /@fontsource/m-plus-rounded-1c@5.2.6:
+    resolution: {integrity: sha512-DZO5VV6ct4YpoXWX2P9HCUuDm4Jggiqwor5DC9trHoueCwHbtsa2FNW2neLZmEmwYVvBGvOWlTld3MjUgV+6fA==}
+    dev: false
+
+  /@fontsource/roboto-mono@5.2.6:
+    resolution: {integrity: sha512-fLCa3zs9XruKE8Fdbq0UWB0wqTi5dzi09QsnW7HgTwwnSVDZ3nH+X7Qg7l0yeIZs+E472cKE3RUD21ZnaXk4Zg==}
+    dev: false
 
   /@formatjs/ecma402-abstract@2.3.4:
     resolution: {integrity: sha512-qrycXDeaORzIqNhBOx0btnhpD1c+/qFIHAN9znofuMJX6QBwtbrmlpWfD4oiUUD2vJUOIYFA/gYtg2KAMGG7sA==}
