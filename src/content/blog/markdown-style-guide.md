@@ -8,6 +8,7 @@ tags: ['markdown', 'documentation', 'guide', 'astro']
 category: 'tutorial'
 author: 'funai'
 readingTime: 5
+draft: true
 ---
 
 Here is a sample of some basic Markdown syntax that can be used when writing Markdown content in Astro.

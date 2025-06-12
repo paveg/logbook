@@ -5,7 +5,7 @@ module.exports = {
       url: [
         'http://localhost/index.html',
         'http://localhost/blog/index.html',
-        'http://localhost/blog/markdown-style-guide/index.html',
+        'http://localhost/blog/2025/auto-ogp-generation-with-satori/index.html',
         'http://localhost/about/index.html',
       ],
     },

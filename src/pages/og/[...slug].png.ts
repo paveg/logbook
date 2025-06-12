@@ -3,25 +3,19 @@ import { getCollection, getEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.flatMap((post) => {
-    const paths = [];
-    const year = post.data.pubDate.getFullYear();
-
-    // Generate paths for both URL patterns
-    if (year >= 2023) {
-      // New format: YYYY/slug
-      paths.push({
-        params: { slug: `${year}/${post.id}` },
-      });
+  const posts = await getCollection('blog', ({ data }) => {
+    // In production, exclude draft posts
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
     }
-
-    // Old format: just slug
-    paths.push({
+    // In development, show all posts including drafts
+    return true;
+  });
+  return posts.map((post) => {
+    // Use the actual post.id which already includes the year folder if present
+    return {
       params: { slug: post.id },
-    });
-
-    return paths;
+    };
   });
 }
 
@@ -32,20 +26,13 @@ export const GET: APIRoute = async ({ params }) => {
     return new Response('Slug is required', { status: 400 });
   }
 
-  // Try to get the post by slug directly
+  // Get the post by slug (slug already matches post.id)
   let post;
   try {
-    // First try the slug as-is
     post = await getEntry('blog', slug);
-
-    // If not found, try with year prefix removed
-    if (!post && slug.includes('/')) {
-      const parts = slug.split('/');
-      const possibleSlug = parts[parts.length - 1];
-      post = await getEntry('blog', possibleSlug);
-    }
-  } catch {
-    // Handle error silently
+  } catch (error) {
+    console.error('Error getting blog entry:', error);
+    return new Response('Error retrieving post', { status: 500 });
   }
 
   if (!post) {
@@ -63,7 +50,8 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Roboto Mono", "SF Mono", Monaco, "Cascadia Code", monospace',
+        fontFamily:
+          'system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Yu Gothic", "Hiragino Sans", sans-serif',
         color: 'white',
       },
       children: [

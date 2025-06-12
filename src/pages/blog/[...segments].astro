@@ -6,26 +6,20 @@ import readingTime from 'reading-time';
 import TableOfContents from '../../components/TableOfContents.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.flatMap((post) => {
-    const year = post.data.pubDate.getFullYear();
-    const paths = [];
-
-    // 新形式: /blog/YYYY/slug (2023年以降)
-    if (year >= 2023) {
-      paths.push({
-        params: { segments: `${year}/${post.id}` },
-        props: post,
-      });
+  const posts = await getCollection('blog', ({ data }) => {
+    // In production, exclude draft posts
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
     }
-
-    // 旧形式維持: /blog/slug (既存記事用)
-    paths.push({
+    // In development, show all posts including drafts
+    return true;
+  });
+  return posts.map((post) => {
+    // Use the actual post.id which already includes the year folder if present
+    return {
       params: { segments: post.id },
       props: post,
-    });
-
-    return paths;
+    };
   });
 }
 
