@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection, getEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
+import fs from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -50,7 +52,7 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Roboto", "Helvetica Neue", Arial, sans-serif',
+        fontFamily: '"Roboto Mono", "Roboto", "Helvetica Neue", Arial, sans-serif',
         color: 'white',
       },
       children: [
@@ -146,8 +148,30 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
+  // Load Roboto Mono font for proper ASCII character support
+  const fontPath = path.join(
+    process.cwd(),
+    'node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2',
+  );
+
+  let fonts = [];
+  try {
+    if (fs.existsSync(fontPath)) {
+      const fontData = fs.readFileSync(fontPath);
+      fonts.push({
+        name: 'Roboto Mono',
+        data: fontData,
+        style: 'normal',
+        weight: 400,
+      });
+    }
+  } catch (error) {
+    console.warn('Failed to load Roboto Mono font:', error);
+  }
+
   return new ImageResponse(html, {
     width: 1200,
     height: 630,
+    fonts,
   });
 };
