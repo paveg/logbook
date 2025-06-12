@@ -50,7 +50,8 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Roboto Mono", "SF Mono", Monaco, "Cascadia Code", monospace',
+        fontFamily:
+          'system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Yu Gothic", "Hiragino Sans", sans-serif',
         color: 'white',
       },
       children: [
