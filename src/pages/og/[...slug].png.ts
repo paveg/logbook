@@ -151,7 +151,7 @@ export const GET: APIRoute = async ({ params }) => {
   // Load Roboto Mono font for proper ASCII character support
   const fontPath = path.join(
     process.cwd(),
-    'node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2',
+    'node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff',
   );
 
   let fonts = [];
