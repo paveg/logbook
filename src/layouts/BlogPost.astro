@@ -25,6 +25,11 @@ const articleKeywords = [
 
 // Create the full URL for this article
 const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+// Generate OGP image URL based on slug
+const ogImageUrl = Astro.props.slug
+  ? new URL(`/og/${Astro.props.slug}.png`, Astro.site).href
+  : heroImage;
 ---
 
 <html lang="ja">
@@ -32,7 +37,7 @@ const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
     <BaseHead
       title={title}
       description={description}
-      image={heroImage}
+      image={ogImageUrl}
       article={true}
       publishedTime={publishedTime}
       modifiedTime={modifiedTime}

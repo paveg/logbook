@@ -4,6 +4,10 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+/* Font imports - optimized for performance */
+@import '/fonts/noto-sans-jp.css';
+@import '/fonts/roboto-mono.css';
+
 :root {
   /* Light mode colors */
   --color-bg: #ffffff;
@@ -98,11 +102,18 @@ html {
   height: 100%;
 }
 
-/* System font stack for optimal readability and performance */
+/* Optimized font stack with Noto Sans Japanese */
 body {
   font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
-    'Yu Gothic', 'Meiryo', sans-serif;
+    'Noto Sans JP',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Hiragino Sans',
+    'Hiragino Kaku Gothic ProN',
+    'Yu Gothic',
+    'Meiryo',
+    sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -220,7 +231,8 @@ code {
   background-color: var(--color-bg-alt);
   border-radius: var(--border-radius-sm);
   font-size: 0.9em;
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
+  font-family: 'Roboto Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-weight: 400;
 }
 pre {
   padding: var(--space-lg);
@@ -228,9 +240,14 @@ pre {
   border-left: 2px solid var(--color-border);
   border-radius: var(--border-radius-sm);
   overflow-x: auto;
+  font-family: 'Roboto Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
 }
 pre > code {
   all: unset;
+  font-family: inherit;
+  font-size: inherit;
 }
 blockquote {
   border-left: 2px solid var(--color-text);
