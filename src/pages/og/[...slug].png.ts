@@ -92,12 +92,14 @@ export const GET: APIRoute = async ({ params }) => {
                 props: {
                   style: {
                     position: 'absolute',
-                    bottom: '60px',
+                    bottom: '40px',
+                    left: '0',
+                    right: '0',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '24px',
-                    fontSize: 24,
-                    opacity: 0.7,
+                    justifyContent: 'space-around',
+                    fontSize: 28,
+                    opacity: 0.8,
                   },
                   children: [
                     {
