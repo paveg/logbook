@@ -97,7 +97,7 @@ export const GET: APIRoute = async ({ params }) => {
                     right: '0',
                     display: 'flex',
                     alignItems: 'center',
-                    justifyContent: 'space-around',
+                    justifyContent: 'space-between',
                     fontSize: 28,
                     opacity: 0.8,
                   },
