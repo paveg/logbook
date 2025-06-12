@@ -1,5 +1,5 @@
-/* Noto Sans JP - Optimized subset for Japanese text */
-/* Regular 400 */
+/* Noto Sans JP - Optimized for critical rendering */
+/* Regular 400 - Japanese characters */
 @font-face {
   font-family: 'Noto Sans JP';
   font-style: normal;
@@ -10,18 +10,7 @@
   unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF00-FFEF;
 }
 
-/* Bold 700 */
-@font-face {
-  font-family: 'Noto Sans JP';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEi75vY0rw-oME.woff2')
-    format('woff2');
-  unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF00-FFEF;
-}
-
-/* Latin subset fallback */
+/* Regular 400 - Latin characters */
 @font-face {
   font-family: 'Noto Sans JP';
   font-style: normal;
@@ -34,6 +23,18 @@
     U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215;
 }
 
+/* Bold 700 - Japanese characters */
+@font-face {
+  font-family: 'Noto Sans JP';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEi75vY0rw-oME.woff2')
+    format('woff2');
+  unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+4E00-9FAF, U+FF00-FFEF;
+}
+
+/* Bold 700 - Latin characters */
 @font-face {
   font-family: 'Noto Sans JP';
   font-style: normal;

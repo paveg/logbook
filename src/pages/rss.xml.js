@@ -3,7 +3,14 @@ import { getCollection } from 'astro:content';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_AUTHOR } from '../consts';
 
 export async function GET(context) {
-  const posts = await getCollection('blog');
+  const posts = await getCollection('blog', ({ data }) => {
+    // In production, exclude draft posts from RSS feed
+    if (import.meta.env.PROD) {
+      return data.draft !== true;
+    }
+    // In development, include all posts
+    return true;
+  });
 
   // Sort posts by publication date (newest first)
   const sortedPosts = posts.sort(

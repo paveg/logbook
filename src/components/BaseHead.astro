@@ -61,11 +61,19 @@ const imageURL = new URL(image, Astro.site).toString();
 <meta name="language" content="ja" />
 <meta property="og:locale" content="ja_JP" />
 
-<!-- Font preloads for critical rendering path -->
+<!-- Critical font loading to prevent layout shift -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<!-- Preload critical fonts -->
 <link
   rel="preload"
   href="https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEi75vY0rw-oME.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="https://fonts.gstatic.com/s/notosansjp/v53/-F6jfjtqLzI2JPCgQBnw7HFyzSD-AsregP8VFBEi75vY0rw.woff2"
   as="font"
   type="font/woff2"
   crossorigin
