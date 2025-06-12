@@ -72,64 +72,38 @@ export const GET: APIRoute = async ({ params }) => {
                 type: 'h1',
                 props: {
                   style: {
-                    fontSize: 64,
+                    fontSize: 72,
                     fontWeight: '700',
                     textAlign: 'center',
-                    margin: '0 0 20px 0',
-                    lineHeight: 1.2,
+                    margin: '0',
+                    lineHeight: 1.3,
                     maxWidth: '90%',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                  },
-                  children: post.data.title,
-                },
-              },
-              {
-                type: 'p',
-                props: {
-                  style: {
-                    fontSize: 24,
-                    textAlign: 'center',
-                    opacity: 0.8,
-                    margin: '0 0 40px 0',
-                    maxWidth: '80%',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                   },
-                  children: post.data.description,
+                  children: post.data.title,
                 },
               },
               {
                 type: 'div',
                 props: {
                   style: {
+                    position: 'absolute',
+                    bottom: '60px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '20px',
-                    fontSize: 20,
-                    opacity: 0.7,
+                    gap: '24px',
+                    fontSize: 18,
+                    opacity: 0.6,
                   },
                   children: [
                     {
                       type: 'span',
                       props: {
-                        children: new Date(post.data.pubDate).toLocaleDateString('ja-JP', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        }),
-                      },
-                    },
-                    {
-                      type: 'span',
-                      props: {
-                        children: '•',
+                        children: new Date(post.data.pubDate).toISOString().split('T')[0],
                       },
                     },
                     {
