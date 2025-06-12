@@ -1,6 +1,6 @@
 ---
 title: '【2025年版】SatoriでOGP画像を自動生成｜Astroブログ初心者向け完全ガイド'
-description: 'Astroブログで@vercel/ogライブラリを使ってOGP画像を自動生成する方法を初心者向けに解説。SNSでのクリック率を2-3倍向上させる実装手順を、コード例付きで詳しく説明します。'
+description: 'AstroブログでSatoriライブラリ（@vercel/og）を使ってOGP画像を自動生成する方法を初心者向けに解説。SNSでのクリック率を2-3倍向上させる実装手順を、コード例付きで詳しく説明します。'
 pubDate: 2025-06-12
 heroImage: '/blog-placeholder-1.jpg'
 keywords: 'OGP画像, Satori, Astro, 自動生成, SNS最適化, Twitter Card, Facebook OGP, ブログ'
@@ -38,7 +38,7 @@ OGP（Open Graph Protocol）画像とは、TwitterやFacebookなどのSNSで記�
 | **手動作成** | デザインの自由度が高い       | 時間がかかる、一貫性が保てない | 30-60分             |
 | **自動生成** | 高速、一貫性、メンテナンス性 | デザインの制約あり             | 0分（初期設定のみ） |
 
-しかし、記事ごとに手作業で画像を作るのは大変です。そこで、**Satori**というライブラリを使って自動生成する方法を紹介します。
+しかし、記事ごとに手作業で画像を作るのは大変です。そこで、**Satori**（@vercel/ogパッケージ）を使って自動生成する方法を紹介します。
 
 ## AstroでOGP画像を自動生成するメリット
 
@@ -51,7 +51,7 @@ AstroブログでOGP画像を自動生成することで、以下のメリット
 
 ## Satoriライブラリの特徴と選ぶ理由
 
-[Satori](https://github.com/vercel/satori)は、Vercel社が開発したHTML/CSSから画像を生成するライブラリです。
+[Satori](https://github.com/vercel/satori)は、Vercel社が開発したHTML/CSSから画像を生成するライブラリです。Node.js環境では[@vercel/og](https://vercel.com/docs/functions/edge-functions/og-image-generation)パッケージとして提供されています。
 
 ### 他のライブラリとの比較
 
@@ -88,7 +88,7 @@ Astro でOGP画像の自動生成を始める前に、以下の環境が必要�
 まず、必要なパッケージをインストールします：
 
 ```bash
-# Satoriと画像処理用のライブラリをインストール
+# Satori（@vercel/ogパッケージ）と画像処理用のライブラリをインストール
 npm install @vercel/og sharp
 
 # または pnpm を使用している場合
@@ -409,6 +409,6 @@ Astro ブログでSatoriを使ったOGP画像の自動生成を実装するこ�
 
 初心者の方でも、この記事の手順に従えば簡単にOGP画像の自動生成が実装できます。まずは基本的な設定から始めて、徐々にデザインをカスタマイズしていきましょう。
 
-何か問題が発生した場合は、エラーメッセージを確認し、[Satori公式ドキュメント](https://github.com/vercel/satori)も参考にしてください。素敵なOGP画像で、あなたのブログをより魅力的にしましょう！
+何か問題が発生した場合は、エラーメッセージを確認し、[Satori公式ドキュメント](https://github.com/vercel/satori)や[@vercel/og公式ドキュメント](https://vercel.com/docs/functions/edge-functions/og-image-generation)も参考にしてください。素敵なOGP画像で、あなたのブログをより魅力的にしましょう！
 
 **この記事が役に立ったら、ぜひSNSでシェアしてください！** 🎉

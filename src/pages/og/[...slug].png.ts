@@ -1,8 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection, getEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
-// import fs from 'fs';
-// import path from 'path';
+import fs from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -52,7 +52,7 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Roboto Mono", "SF Mono", Monaco, "Cascadia Code", monospace',
+        fontFamily: '"Noto Sans JP", system-ui, -apple-system, "Segoe UI", "Roboto", sans-serif',
         color: 'white',
       },
       children: [
@@ -148,8 +148,28 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
+  // Load font files
+  const fontRegular = fs.readFileSync(
+    path.join(process.cwd(), 'public/fonts/noto-sans-jp-regular.ttf'),
+  );
+  const fontBold = fs.readFileSync(path.join(process.cwd(), 'public/fonts/noto-sans-jp-bold.ttf'));
+
   return new ImageResponse(html, {
     width: 1200,
     height: 630,
+    fonts: [
+      {
+        name: 'Noto Sans JP',
+        data: fontRegular,
+        style: 'normal',
+        weight: 400,
+      },
+      {
+        name: 'Noto Sans JP',
+        data: fontBold,
+        style: 'normal',
+        weight: 700,
+      },
+    ],
   });
 };
