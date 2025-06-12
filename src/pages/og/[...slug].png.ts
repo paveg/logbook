@@ -52,7 +52,7 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily: '"Roboto Mono", "Roboto", "Helvetica Neue", Arial, sans-serif',
+        fontFamily: '"M PLUS Rounded 1c", "Roboto", "Helvetica Neue", Arial, sans-serif',
         color: 'white',
       },
       children: [
@@ -148,10 +148,10 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  // Load Roboto Mono font for proper ASCII character support
+  // Load M PLUS Rounded 1c font for Japanese text support
   const fontPath = path.join(
     process.cwd(),
-    'node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff',
+    'node_modules/@fontsource/m-plus-rounded-1c/files/m-plus-rounded-1c-japanese-400-normal.woff',
   );
 
   let fonts = [];
@@ -159,14 +159,14 @@ export const GET: APIRoute = async ({ params }) => {
     if (fs.existsSync(fontPath)) {
       const fontData = fs.readFileSync(fontPath);
       fonts.push({
-        name: 'Roboto Mono',
+        name: 'M PLUS Rounded 1c',
         data: fontData,
         style: 'normal',
         weight: 400,
       });
     }
   } catch (error) {
-    console.warn('Failed to load Roboto Mono font:', error);
+    console.warn('Failed to load M PLUS Rounded 1c font:', error);
   }
 
   return new ImageResponse(html, {
