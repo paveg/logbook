@@ -64,7 +64,7 @@ export const GET: APIRoute = async ({ params }) => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'flex-start',
-              paddingTop: '120px',
+              paddingTop: '80px',
               width: '90%',
               height: '90%',
             },
