@@ -146,7 +146,7 @@ body {
   flex-direction: column;
 }
 
-/* モバイルでの横スクロールを強制的に防ぐ */
+/* Force prevent horizontal scrolling on mobile */
 @media (max-width: 720px) {
   html,
   body {
@@ -247,7 +247,7 @@ textarea {
 input {
   font-size: 16px;
 }
-/* テーブルスタイル */
+/* Table styles */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -284,7 +284,7 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* モバイル用テーブル対応 */
+/* Mobile table support */
 .table-container {
   width: 100%;
   overflow-x: auto;
@@ -299,14 +299,14 @@ tbody tr:last-child td {
   min-width: 600px;
 }
 
-/* コンパクトテーブル用クラス */
+/* Compact table utility class */
 .table-compact th,
 .table-compact td {
   padding: var(--space-xs) var(--space-sm);
   font-size: 0.875rem;
 }
 
-/* ノーラップテーブル用クラス（特定ケース用） */
+/* No-wrap table utility class (for specific cases) */
 .table-nowrap th,
 .table-nowrap td {
   white-space: nowrap;
@@ -327,6 +327,7 @@ code {
   font-weight: 400;
 }
 pre {
+  position: relative;
   padding: var(--space-md);
   background-color: var(--color-bg-alt);
   border-left: 2px solid var(--color-border);
@@ -337,11 +338,67 @@ pre {
   line-height: 1.6;
   /* preタグが親要素の幅を超えないようにする */
   max-width: 100%;
+  /* Reserve space for copy button */
+  padding-top: calc(var(--space-md) + 28px);
 }
 pre > code {
   all: unset;
   font-family: inherit;
   font-size: inherit;
+}
+
+/* Copy button styles */
+.copy-button {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  color: var(--color-text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.75rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateY(-2px);
+  z-index: 1;
+}
+
+.copy-button:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+  border-color: var(--color-text-light);
+  transform: translateY(0);
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+.copy-button.copied {
+  color: var(--color-success);
+  border-color: var(--color-success);
+}
+
+.copy-button .copy-icon,
+.copy-button .check-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.copy-button .hidden {
+  display: none;
+}
+
+/* Show copy button on pre tag hover */
+pre:hover .copy-button {
+  opacity: 1;
 }
 blockquote {
   border-left: 2px solid var(--color-text);
@@ -400,7 +457,7 @@ hr {
     font-size: 16px; /* Explicit 16px to prevent zoom */
   }
 
-  /* モバイル用テーブル調整 */
+  /* Mobile table adjustments */
   table {
     font-size: 0.875rem;
   }
@@ -408,6 +465,11 @@ hr {
   th,
   td {
     padding: var(--space-xs) var(--space-sm);
+  }
+
+  /* Tablet copy button */
+  .copy-button {
+    opacity: 1;
   }
 }
 
@@ -445,7 +507,7 @@ hr {
     font-size: 16px;
   }
 
-  /* スマートフォン用テーブル調整 */
+  /* Smartphone table adjustments */
   table {
     font-size: 0.8125rem; /* 13px */
   }
@@ -453,6 +515,25 @@ hr {
   th,
   td {
     padding: var(--space-xs);
+  }
+
+  /* Mobile copy button */
+  .copy-button {
+    opacity: 1;
+    padding: var(--space-xs);
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+  }
+
+  .copy-button .copy-text {
+    display: none;
+  }
+
+  .copy-button .copy-icon,
+  .copy-button .check-icon {
+    width: 14px;
+    height: 14px;
   }
 }
 

@@ -65,7 +65,7 @@ const ogImageUrl = Astro.props.slug
         color: var(--color-text);
       }
       .title {
-        margin-bottom: var(--space-xl);
+        margin-bottom: var(--space-lg);
         padding: 0;
         text-align: left;
       }
@@ -194,7 +194,7 @@ const ogImageUrl = Astro.props.slug
     <Footer />
 
     <script>
-      // 見出しにアンカーリンクを追加
+      // Add anchor links to headings
       function addAnchorLinks() {
         const headings = document.querySelectorAll('.prose h2[id], .prose h3[id]');
 
@@ -212,11 +212,72 @@ const ogImageUrl = Astro.props.slug
         });
       }
 
-      // DOM読み込み完了後に実行
+      // Add copy buttons to code blocks
+      function addCopyButtons() {
+        const preElements = document.querySelectorAll('pre');
+
+        preElements.forEach((pre) => {
+          // Skip if copy button already exists
+          if (pre.querySelector('.copy-button')) return;
+
+          const copyButton = document.createElement('button');
+          copyButton.className = 'copy-button';
+          copyButton.setAttribute('aria-label', 'コードをコピー');
+          copyButton.setAttribute('title', 'コードをコピー');
+
+          copyButton.innerHTML = `
+            <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <svg class="check-icon hidden" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20,6 9,17 4,12"></polyline>
+            </svg>
+            <span class="copy-text">コピー</span>
+          `;
+
+          copyButton.addEventListener('click', async () => {
+            try {
+              const codeElement = pre.querySelector('code');
+              if (!codeElement) return;
+
+              const textToCopy = codeElement.textContent || '';
+              await navigator.clipboard.writeText(textToCopy);
+
+              // Update button state
+              const copyIcon = copyButton.querySelector('.copy-icon');
+              const checkIcon = copyButton.querySelector('.check-icon');
+              const copyText = copyButton.querySelector('.copy-text');
+
+              copyButton.classList.add('copied');
+              copyIcon?.classList.add('hidden');
+              checkIcon?.classList.remove('hidden');
+              if (copyText) copyText.textContent = 'コピー済み';
+
+              setTimeout(() => {
+                copyButton.classList.remove('copied');
+                copyIcon?.classList.remove('hidden');
+                checkIcon?.classList.add('hidden');
+                if (copyText) copyText.textContent = 'コピー';
+              }, 2000);
+            } catch (err) {
+              console.error('Failed to copy text: ', err);
+            }
+          });
+
+          pre.appendChild(copyButton);
+        });
+      }
+
+      // Execute after DOM is loaded
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addAnchorLinks);
+        document.addEventListener('DOMContentLoaded', () => {
+          addAnchorLinks();
+          addCopyButtons();
+        });
       } else {
         addAnchorLinks();
+        addCopyButtons();
       }
     </script>
   </body>
