@@ -407,27 +407,25 @@ pre:not(.astro-code) {
   padding-top: calc(var(--space-md) + 28px);
 }
 
-/* Light theme: Min Light colors */
-:root .astro-code {
-  color: var(--shiki-light, #24292eff);
-  background: var(--shiki-light-bg, #ffffff);
+/* GitHub Light/Dark syntax highlighting with proper theme switching */
+.astro-code {
+  background: #ffffff !important;
+  color: #24292f !important;
 }
 
-/* Dark theme: Min Dark colors */
 [data-theme='dark'] .astro-code {
-  color: var(--shiki-dark, #b392f0);
-  background: var(--shiki-dark-bg, #1b1f23);
+  background: #0d1117 !important;
+  color: #f0f6fc !important;
 }
 
-/* Auto dark mode */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .astro-code {
-    color: var(--shiki-dark, #b392f0);
-    background: var(--shiki-dark-bg, #1b1f23);
+    background: #0d1117 !important;
+    color: #f0f6fc !important;
   }
 }
 
-/* Preserve all syntax highlighting colors from Shiki */
+/* Let Shiki handle all syntax colors via CSS variables */
 .astro-code span {
   color: var(--shiki-light);
 }
