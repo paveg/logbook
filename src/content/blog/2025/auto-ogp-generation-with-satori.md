@@ -81,7 +81,7 @@ Astro でOGP画像の自動生成を始める前に、以下の環境が必要�
 - **基本的なHTML/CSS知識**: レイアウト作成に必要
 - **TypeScript**: 型安全性を重視する場合（オプション）
 
-> Astroの基本的な使い方については、[Astro公式ドキュメント](https://docs.astro.build/)を参照してください。
+> Astroの基本的な使い方については、[Astro公式ドキュメントのCLIリファレンス](https://docs.astro.build/reference/cli-reference/)を参照してください。
 
 ### パッケージのインストール
 
@@ -409,6 +409,6 @@ Astro ブログでSatoriを使ったOGP画像の自動生成を実装するこ�
 
 初心者の方でも、この記事の手順に従えば簡単にOGP画像の自動生成が実装できます。まずは基本的な設定から始めて、徐々にデザインをカスタマイズしていきましょう。
 
-何か問題が発生した場合は、エラーメッセージを確認し、[Satori公式ドキュメント](https://github.com/vercel/satori)や[@vercel/og公式ドキュメント](https://vercel.com/docs/functions/edge-functions/og-image-generation)も参考にしてください。素敵なOGP画像で、あなたのブログをより魅力的にしましょう！
+何か問題が発生した場合は、エラーメッセージを確認し、[SatoriのGitHubリポジトリ](https://github.com/vercel/satori)や[Vercel OG画像生成の公式ドキュメント](https://vercel.com/docs/functions/edge-functions/og-image-generation)も参考にしてください。素敵なOGP画像で、あなたのブログをより魅力的にしましょう！
 
 **この記事が役に立ったら、ぜひSNSでシェアしてください！** 🎉

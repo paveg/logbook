@@ -4,13 +4,13 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-/* Critical CSS - optimized font declarations for Japanese content */
+/* Optimized font declarations with correct URLs for Japanese content */
 @font-face {
   font-family: 'M PLUS Rounded 1c';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v2/VdGaAZLylnP6UxnX1hFKlEWJE8rWqFMhQ7.woff2')
+  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGEAYIAV6gnpUpoWwNkYvrugw9RuPWGVdDe8yMl.woff2')
     format('woff2');
   unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+FF00-FFEF, U+4E00-9FAF;
 }
@@ -20,7 +20,7 @@
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v2/VdGaAZLylnP6UxnX1hFKlEWJE8r6qFMhQ7.woff2')
+  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGBAYIAV6gnpUpoWwNkYvrugw9RuM1y55sKhvKNbCIl.woff2')
     format('woff2');
   unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+FF00-FFEF, U+4E00-9FAF;
 }
@@ -30,7 +30,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v2/VdGaAZLylnP6UxnX1hFKlEWJE8rqqFMhQ7.woff2')
+  src: url('https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGBAYIAV6gnpUpoWwNkYvrugw9RuM064ZsKhvKNbCIl.woff2')
     format('woff2');
   unicode-range: U+3000-303F, U+3040-309F, U+30A0-30FF, U+FF00-FFEF, U+4E00-9FAF;
 }
@@ -40,7 +40,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vrtSM1J-gEPT5Ese6hmHSh0mQ.woff2')
+  src: url('https://fonts.gstatic.com/s/robotomono/v30/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vqPQ1XJWQU.woff2')
     format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
@@ -52,7 +52,7 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_XvrtSM1J-gEPT5Ese6hmHSh0mQ.woff2')
+  src: url('https://fonts.gstatic.com/s/robotomono/v30/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_Of2PQ1XJWQU.woff2')
     format('woff2');
   unicode-range:
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074,
@@ -60,10 +60,10 @@
 }
 
 :root {
-  /* Light mode colors */
+  /* Light mode colors - improved contrast ratios */
   --color-bg: #ffffff;
   --color-text: #1a1a1a;
-  --color-text-light: #666666;
+  --color-text-light: #555555; /* Improved from #666666 for better contrast */
   --color-border: #e5e5e5;
   --color-bg-alt: #f8f8f8;
 
@@ -107,11 +107,11 @@
   --box-shadow: none;
 }
 
-/* Dark mode colors */
+/* Dark mode colors - improved contrast ratios */
 [data-theme='dark'] {
   --color-bg: #0f0f0f;
   --color-text: #e5e5e5;
-  --color-text-light: #a3a3a3;
+  --color-text-light: #b3b3b3; /* Improved from #a3a3a3 for better contrast */
   --color-border: #2a2a2a;
   --color-bg-alt: #1a1a1a;
 
@@ -130,7 +130,7 @@
   :root:not([data-theme='light']) {
     --color-bg: #0f0f0f;
     --color-text: #e5e5e5;
-    --color-text-light: #a3a3a3;
+    --color-text-light: #b3b3b3; /* Improved from #a3a3a3 for better contrast */
     --color-border: #2a2a2a;
     --color-bg-alt: #1a1a1a;
 
@@ -268,13 +268,16 @@ b {
 }
 a {
   color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
 }
 a:hover {
   color: var(--color-accent-hover);
-  border-bottom-color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
+  text-decoration-thickness: 2px;
 }
 a:focus {
   outline: 2px solid var(--color-accent);
@@ -388,6 +391,38 @@ pre {
   max-width: 100%;
   /* Reserve space for copy button */
   padding-top: calc(var(--space-md) + 28px);
+}
+
+/* Accessible syntax highlighting theme switching */
+.astro-code {
+  background-color: var(--color-bg-alt) !important;
+  border: 1px solid var(--color-border);
+}
+
+/* Light theme syntax highlighting */
+:root .astro-code[data-theme='github-light'] {
+  display: block;
+}
+:root .astro-code[data-theme='github-dark-high-contrast'] {
+  display: none;
+}
+
+/* Dark theme syntax highlighting */
+[data-theme='dark'] .astro-code[data-theme='github-light'] {
+  display: none;
+}
+[data-theme='dark'] .astro-code[data-theme='github-dark-high-contrast'] {
+  display: block;
+}
+
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .astro-code[data-theme='github-light'] {
+    display: none;
+  }
+  :root:not([data-theme='light']) .astro-code[data-theme='github-dark-high-contrast'] {
+    display: block;
+  }
 }
 pre > code {
   all: unset;

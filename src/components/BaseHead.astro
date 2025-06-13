@@ -67,14 +67,48 @@ const imageURL = new URL(image, Astro.site).toString();
 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
-<!-- Preload critical fonts -->
-<link
-  rel="preload"
-  href="https://fonts.gstatic.com/s/mplusrounded1c/v2/VdGaAZLylnP6UxnX1hFKlEWJE8rWqFMhQ7.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
+<!-- Font optimization: Let fonts load async to not block LCP -->
+<script>
+  // Preload critical fonts after LCP to reduce render blocking
+  function preloadFontsAfterLCP() {
+    const observer = new PerformanceObserver((list) => {
+      for (const entry of list.getEntries()) {
+        if (entry.entryType === 'largest-contentful-paint') {
+          // LCP has occurred, now preload fonts
+          const link1 = document.createElement('link');
+          link1.rel = 'preload';
+          link1.href =
+            'https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGEAYIAV6gnpUpoWwNkYvrugw9RuPWGVdDe8yMl.woff2';
+          link1.as = 'font';
+          link1.type = 'font/woff2';
+          link1.crossOrigin = 'anonymous';
+          document.head.appendChild(link1);
+
+          const link2 = document.createElement('link');
+          link2.rel = 'preload';
+          link2.href =
+            'https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGBAYIAV6gnpUpoWwNkYvrugw9RuM1y55sKhvKNbCIl.woff2';
+          link2.as = 'font';
+          link2.type = 'font/woff2';
+          link2.crossOrigin = 'anonymous';
+          document.head.appendChild(link2);
+
+          observer.disconnect();
+        }
+      }
+    });
+    observer.observe({ entryTypes: ['largest-contentful-paint'] });
+
+    // Fallback: preload after 1 second if LCP hasn't been observed
+    setTimeout(() => {
+      observer.disconnect();
+    }, 1000);
+  }
+
+  if ('PerformanceObserver' in window) {
+    preloadFontsAfterLCP();
+  }
+</script>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -126,6 +160,9 @@ const imageURL = new URL(image, Astro.site).toString();
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content={SITE_TITLE} />
+
+<!-- Optimize for bfcache -->
+<meta http-equiv="cache-control" content="public, max-age=0, must-revalidate" />
 
 <!-- JSON-LD Structured Data -->
 <script

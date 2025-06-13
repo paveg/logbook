@@ -65,7 +65,7 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3 && heading.d
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius-sm);
     padding: var(--space-sm) var(--space-md);
-    color: var(--color-text-light);
+    color: var(--color-text);
     font-size: var(--font-size-sm);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -73,8 +73,13 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3 && heading.d
   }
 
   .toc-toggle:hover {
-    color: var(--color-text);
-    border-color: var(--color-text-light);
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  .toc-toggle:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
   }
 
   .toc-nav {
@@ -112,23 +117,27 @@ const tocHeadings = headings.filter((heading) => heading.depth <= 3 && heading.d
 
   .toc-link {
     display: block;
-    color: var(--color-text-light);
-    text-decoration: none;
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
     padding: var(--space-xs) 0;
     line-height: var(--line-height-base);
-    transition: color 0.15s ease;
+    transition: all 0.15s ease;
     border-bottom: none;
     font-size: var(--font-size-sm);
   }
 
   .toc-link:hover {
-    color: var(--color-text);
+    color: var(--color-accent-hover);
+    text-decoration-color: var(--color-accent-hover);
     border-bottom: none;
   }
 
   .toc-level-3 .toc-link {
     font-size: 0.875rem;
-    opacity: 0.8;
+    /* Remove opacity to maintain contrast */
   }
 
   /* デスクトップ: サイドバー */

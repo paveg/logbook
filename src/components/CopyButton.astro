@@ -202,4 +202,12 @@
   } else {
     initializeCopyButtons();
   }
+
+  // Optimize for bfcache - reinitialize on pageshow
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      // Page was restored from bfcache, reinitialize copy buttons
+      initializeCopyButtons();
+    }
+  });
 </script>
