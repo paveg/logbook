@@ -189,7 +189,7 @@ git push -u origin feature/add-new-blog-post
 ### Syntax Highlighting
 
 - **Themes**: Using `github-light` and `github-dark-high-contrast` for colorful, accessible code blocks
-- **Dual-theme support**: CSS variables automatically switch themes based on user preference  
+- **Dual-theme support**: CSS variables automatically switch themes based on user preference
 - **Build-time processing**: Shiki generates syntax highlighting at build time (no runtime cost)
 - **Copy button integration**: All code blocks include accessible copy functionality
 
@@ -248,7 +248,7 @@ pnpm build && pnpm lighthouse
 Current themes are `github-light` and `github-dark-high-contrast`. When changing:
 
 1. Update `astro.config.mjs` themes
-2. Update CSS fallback colors in `global.css`  
+2. Update CSS fallback colors in `global.css`
 3. Test both light and dark modes
 4. Ensure color contrast meets accessibility standards
 5. Be aware that theme changes may require merge conflict resolution if working on multiple branches
