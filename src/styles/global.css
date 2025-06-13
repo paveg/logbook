@@ -4,9 +4,12 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
-/* Font imports - optimized for performance */
-@import '/fonts/mplus-rounded-1c.css';
-@import '/fonts/roboto-mono.css';
+/* Font imports via Fontsource - optimized for performance and reliability */
+@import '@fontsource/m-plus-rounded-1c/400.css';
+@import '@fontsource/m-plus-rounded-1c/500.css';
+@import '@fontsource/m-plus-rounded-1c/700.css';
+@import '@fontsource/roboto-mono/400.css';
+@import '@fontsource/roboto-mono/700.css';
 
 :root {
   /* Light mode colors */

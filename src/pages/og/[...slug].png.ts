@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getCollection, getEntry } from 'astro:content';
 import { ImageResponse } from '@vercel/og';
+import fs from 'fs';
+import path from 'path';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -50,8 +52,7 @@ export const GET: APIRoute = async ({ params }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        fontFamily:
-          'system-ui, -apple-system, "Segoe UI", "Roboto", "Helvetica Neue", "Yu Gothic", "Hiragino Sans", sans-serif',
+        fontFamily: '"M PLUS Rounded 1c", "Roboto", "Helvetica Neue", Arial, sans-serif',
         color: 'white',
       },
       children: [
@@ -62,7 +63,8 @@ export const GET: APIRoute = async ({ params }) => {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
+              paddingTop: '80px',
               width: '90%',
               height: '90%',
             },
@@ -71,64 +73,40 @@ export const GET: APIRoute = async ({ params }) => {
                 type: 'h1',
                 props: {
                   style: {
-                    fontSize: 64,
+                    fontSize: 72,
                     fontWeight: '700',
                     textAlign: 'center',
-                    margin: '0 0 20px 0',
-                    lineHeight: 1.2,
+                    margin: '0',
+                    lineHeight: 1.3,
                     maxWidth: '90%',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                  },
-                  children: post.data.title,
-                },
-              },
-              {
-                type: 'p',
-                props: {
-                  style: {
-                    fontSize: 24,
-                    textAlign: 'center',
-                    opacity: 0.8,
-                    margin: '0 0 40px 0',
-                    maxWidth: '80%',
                     overflow: 'hidden',
                     textOverflow: 'ellipsis',
                     display: '-webkit-box',
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: 'vertical',
                   },
-                  children: post.data.description,
+                  children: post.data.title,
                 },
               },
               {
                 type: 'div',
                 props: {
                   style: {
+                    position: 'absolute',
+                    bottom: '40px',
+                    left: '0',
+                    right: '0',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '20px',
-                    fontSize: 20,
-                    opacity: 0.7,
+                    justifyContent: 'space-between',
+                    fontSize: 28,
+                    opacity: 0.8,
                   },
                   children: [
                     {
                       type: 'span',
                       props: {
-                        children: new Date(post.data.pubDate).toLocaleDateString('ja-JP', {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        }),
-                      },
-                    },
-                    {
-                      type: 'span',
-                      props: {
-                        children: '•',
+                        children: new Date(post.data.pubDate).toISOString().split('T')[0],
                       },
                     },
                     {
@@ -147,8 +125,30 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
+  // Load M PLUS Rounded 1c font for Japanese text support
+  const fontPath = path.join(
+    process.cwd(),
+    'node_modules/@fontsource/m-plus-rounded-1c/files/m-plus-rounded-1c-japanese-400-normal.woff',
+  );
+
+  let fonts = [];
+  try {
+    if (fs.existsSync(fontPath)) {
+      const fontData = fs.readFileSync(fontPath);
+      fonts.push({
+        name: 'M PLUS Rounded 1c',
+        data: fontData,
+        style: 'normal',
+        weight: 400,
+      });
+    }
+  } catch (error) {
+    console.warn('Failed to load M PLUS Rounded 1c font:', error);
+  }
+
   return new ImageResponse(html, {
     width: 1200,
     height: 630,
+    fonts,
   });
 };

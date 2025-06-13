@@ -21,6 +21,8 @@
     "@astrojs/mdx": "^4.3.0",
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.4.0",
+    "@fontsource/m-plus-rounded-1c": "^5.2.6",
+    "@fontsource/roboto-mono": "^5.2.6",
     "@vercel/og": "^0.6.8",
     "astro": "^5.8.1",
     "reading-time": "^1.5.0",
