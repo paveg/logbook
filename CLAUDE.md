@@ -63,10 +63,12 @@ Performance thresholds configured:
 
 ### Key Components
 
-- **`BaseHead.astro`**: SEO metadata, OpenGraph tags, favicon
-- **`BlogPost.astro`**: Layout for individual blog posts with reading time
-- **`ThemeToggle.astro`**: Dark mode toggle component with localStorage persistence
+- **`BaseHead.astro`**: SEO metadata, OpenGraph tags, favicon, post-LCP font preloading
+- **`BlogPost.astro`**: Layout for individual blog posts with reading time and hero image optimization
+- **`ThemeToggle.astro`**: Dark mode toggle component with localStorage persistence and bfcache support
 - **`ReadingTime.astro`**: Displays estimated reading time for posts
+- **`CopyButton.astro`**: Accessible copy-to-clipboard functionality for code blocks
+- **`TableOfContents.astro`**: Automatic table of contents generation for blog posts
 
 ### Site Configuration
 
@@ -186,8 +188,8 @@ git push -u origin feature/add-new-blog-post
 
 ### Syntax Highlighting
 
-- **Themes**: Using `min-light` and `min-dark` for colorful, accessible code blocks
-- **Dual-theme support**: CSS variables automatically switch themes based on user preference
+- **Themes**: Using `github-light` and `github-dark-high-contrast` for colorful, accessible code blocks
+- **Dual-theme support**: CSS variables automatically switch themes based on user preference  
 - **Build-time processing**: Shiki generates syntax highlighting at build time (no runtime cost)
 - **Copy button integration**: All code blocks include accessible copy functionality
 
@@ -243,9 +245,39 @@ pnpm build && pnpm lighthouse
 
 ### Syntax Highlighting Themes
 
-Current themes are `min-light` and `min-dark`. When changing:
+Current themes are `github-light` and `github-dark-high-contrast`. When changing:
 
 1. Update `astro.config.mjs` themes
-2. Update CSS fallback colors in `global.css`
+2. Update CSS fallback colors in `global.css`  
 3. Test both light and dark modes
 4. Ensure color contrast meets accessibility standards
+5. Be aware that theme changes may require merge conflict resolution if working on multiple branches
+
+## Common Development Workflows
+
+### Performance Optimization Process
+
+When optimizing performance:
+
+1. **Baseline measurement**: Run `pnpm lighthouse` to get current metrics
+2. **Make targeted changes**: Focus on specific Lighthouse recommendations
+3. **Test changes**: Build and run lighthouse again to verify improvements
+4. **Commit incrementally**: Make small, focused commits for each optimization
+
+### Merge Conflict Resolution
+
+The `src/styles/global.css` file frequently has conflicts due to syntax highlighting updates:
+
+1. **Identify conflict markers**: Look for `<<<<<<< HEAD`, `=======`, `>>>>>>> origin/main`
+2. **Preserve intended changes**: Usually keep the GitHub themes configuration
+3. **Test after resolution**: Always run `pnpm build` after resolving conflicts
+4. **Verify theme functionality**: Check both light and dark modes work correctly
+
+### Code Block Testing
+
+When making changes to syntax highlighting:
+
+1. **Test with real content**: Use existing blog posts that have code blocks
+2. **Check theme switching**: Verify colors change properly between light/dark modes
+3. **Accessibility validation**: Ensure text contrast meets WCAG AA standards
+4. **Copy button functionality**: Verify the copy-to-clipboard feature works
