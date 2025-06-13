@@ -268,13 +268,16 @@ b {
 }
 a {
   color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.2s ease;
 }
 a:hover {
   color: var(--color-accent-hover);
-  border-bottom-color: var(--color-accent-hover);
+  text-decoration-color: var(--color-accent-hover);
+  text-decoration-thickness: 2px;
 }
 a:focus {
   outline: 2px solid var(--color-accent);
@@ -388,6 +391,38 @@ pre {
   max-width: 100%;
   /* Reserve space for copy button */
   padding-top: calc(var(--space-md) + 28px);
+}
+
+/* Accessible syntax highlighting theme switching */
+.astro-code {
+  background-color: var(--color-bg-alt) !important;
+  border: 1px solid var(--color-border);
+}
+
+/* Light theme syntax highlighting */
+:root .astro-code[data-theme='github-light'] {
+  display: block;
+}
+:root .astro-code[data-theme='github-dark-high-contrast'] {
+  display: none;
+}
+
+/* Dark theme syntax highlighting */
+[data-theme='dark'] .astro-code[data-theme='github-light'] {
+  display: none;
+}
+[data-theme='dark'] .astro-code[data-theme='github-dark-high-contrast'] {
+  display: block;
+}
+
+/* Auto dark mode based on system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .astro-code[data-theme='github-light'] {
+    display: none;
+  }
+  :root:not([data-theme='light']) .astro-code[data-theme='github-dark-high-contrast'] {
+    display: block;
+  }
 }
 pre > code {
   all: unset;

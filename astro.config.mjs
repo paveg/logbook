@@ -7,6 +7,15 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   output: 'static',
   site: 'https://logbook-a9n.pages.dev',
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark-high-contrast',
+      },
+      defaultColor: false,
+    },
+  },
   integrations: [
     mdx(),
     sitemap({

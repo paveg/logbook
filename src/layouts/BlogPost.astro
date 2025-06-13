@@ -97,13 +97,19 @@ const ogImageUrl = Astro.props.slug
         opacity: 1;
       }
 
+      /* Show anchor links on focus for accessibility */
+      .prose h2:focus-within .anchor-link,
+      .prose h3:focus-within .anchor-link {
+        opacity: 1;
+      }
+
       .anchor-link {
         position: absolute;
         left: -1.5rem;
         top: 50%;
         transform: translateY(-50%);
         opacity: 0;
-        color: var(--color-text-light);
+        color: var(--color-accent);
         text-decoration: none;
         font-weight: normal;
         transition: opacity 0.2s ease;
@@ -129,8 +135,15 @@ const ogImageUrl = Astro.props.slug
       }
 
       .anchor-link:hover {
-        color: var(--color-text);
+        color: var(--color-accent-hover);
         border-bottom: none;
+      }
+
+      .anchor-link:focus {
+        opacity: 1;
+        outline: 2px solid var(--color-accent);
+        outline-offset: 2px;
+        border-radius: 2px;
       }
 
       @media (max-width: 720px) {
@@ -164,6 +177,7 @@ const ogImageUrl = Astro.props.slug
                     src={heroImage}
                     alt=""
                     loading="eager"
+                    fetchpriority="high"
                     decoding="async"
                   />
                 ) : (
@@ -173,6 +187,7 @@ const ogImageUrl = Astro.props.slug
                     height={510}
                     alt=""
                     loading="eager"
+                    fetchpriority="high"
                     format="webp"
                     quality={85}
                   />
