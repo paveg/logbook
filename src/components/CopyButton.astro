@@ -1,0 +1,205 @@
+---
+// CopyButton component for code blocks
+---
+
+<button class="copy-button" aria-label="コードをコピー" title="コードをコピー">
+  <svg
+    class="copy-icon"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+  <svg
+    class="check-icon hidden"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <polyline points="20,6 9,17 4,12"></polyline>
+  </svg>
+  <span class="copy-text">コピー</span>
+</button>
+
+<style>
+  .copy-button {
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-sm);
+    color: var(--color-text-light);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    opacity: 0;
+    transform: translateY(-2px);
+    z-index: 1;
+  }
+
+  .copy-button:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-color: var(--color-text-light);
+    transform: translateY(0);
+  }
+
+  .copy-button:active {
+    transform: scale(0.95);
+  }
+
+  .copy-button.copied {
+    color: var(--color-success);
+    border-color: var(--color-success);
+  }
+
+  .copy-icon,
+  .check-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Show copy button on hover */
+  pre:hover .copy-button {
+    opacity: 1;
+  }
+
+  /* Mobile: always show copy button */
+  @media (max-width: 768px) {
+    .copy-button {
+      opacity: 1;
+      position: static;
+      margin-bottom: var(--space-sm);
+      transform: none;
+    }
+
+    .copy-text {
+      display: none;
+    }
+
+    .copy-button {
+      padding: var(--space-xs);
+      width: 32px;
+      height: 32px;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .copy-button {
+      width: 28px;
+      height: 28px;
+    }
+
+    .copy-icon,
+    .check-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>
+
+<script>
+  function initializeCopyButtons() {
+    const copyButtons = document.querySelectorAll('.copy-button');
+
+    copyButtons.forEach((button) => {
+      const copyIcon = button.querySelector('.copy-icon');
+      const checkIcon = button.querySelector('.check-icon');
+      const copyText = button.querySelector('.copy-text');
+
+      button.addEventListener('click', async () => {
+        try {
+          // Find the associated code block
+          const preElement = button.closest('pre');
+          const codeElement = preElement?.querySelector('code');
+
+          if (!codeElement) return;
+
+          const textToCopy = codeElement.textContent || '';
+
+          // Copy to clipboard
+          await navigator.clipboard.writeText(textToCopy);
+
+          // Update button state
+          button.classList.add('copied');
+          copyIcon?.classList.add('hidden');
+          checkIcon?.classList.remove('hidden');
+          if (copyText) copyText.textContent = 'コピー済み';
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            button.classList.remove('copied');
+            copyIcon?.classList.remove('hidden');
+            checkIcon?.classList.add('hidden');
+            if (copyText) copyText.textContent = 'コピー';
+          }, 2000);
+        } catch (err) {
+          console.error('Failed to copy text: ', err);
+
+          // Fallback for older browsers
+          const preElement = button.closest('pre');
+          const codeElement = preElement?.querySelector('code');
+
+          if (codeElement) {
+            const range = document.createRange();
+            range.selectNodeContents(codeElement);
+            const selection = window.getSelection();
+            selection?.removeAllRanges();
+            selection?.addRange(range);
+
+            try {
+              document.execCommand('copy');
+              selection?.removeAllRanges();
+
+              // Show success state
+              button.classList.add('copied');
+              copyIcon?.classList.add('hidden');
+              checkIcon?.classList.remove('hidden');
+              if (copyText) copyText.textContent = 'コピー済み';
+
+              setTimeout(() => {
+                button.classList.remove('copied');
+                copyIcon?.classList.remove('hidden');
+                checkIcon?.classList.add('hidden');
+                if (copyText) copyText.textContent = 'コピー';
+              }, 2000);
+            } catch (fallbackErr) {
+              console.error('Fallback copy failed: ', fallbackErr);
+            }
+          }
+        }
+      });
+    });
+  }
+
+  // Initialize when DOM is loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeCopyButtons);
+  } else {
+    initializeCopyButtons();
+  }
+</script>
