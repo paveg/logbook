@@ -15,7 +15,11 @@ const isProd = import.meta.env.PROD;
 {
   isProd && GA_MEASUREMENT_ID && (
     <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />
+      <script
+        async
+        defer
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+      />
       <script
         set:html={`
         window.dataLayer = window.dataLayer || [];

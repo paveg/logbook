@@ -125,7 +125,7 @@ export const GET: APIRoute = async ({ params }) => {
     },
   };
 
-  // Load M PLUS Rounded 1c font for Japanese text support
+  // Load M PLUS Rounded 1c font for Japanese text support in OG images
   const fontPath = path.join(
     process.cwd(),
     'node_modules/@fontsource/m-plus-rounded-1c/files/m-plus-rounded-1c-japanese-400-normal.woff',
