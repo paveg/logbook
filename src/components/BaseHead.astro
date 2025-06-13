@@ -67,10 +67,10 @@ const imageURL = new URL(image, Astro.site).toString();
 <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
 
-<!-- Preload critical fonts -->
+<!-- Preload critical font -->
 <link
   rel="preload"
-  href="https://fonts.gstatic.com/s/mplusrounded1c/v2/VdGaAZLylnP6UxnX1hFKlEWJE8rWqFMhQ7.woff2"
+  href="https://fonts.gstatic.com/s/mplusrounded1c/v18/VdGEAYIAV6gnpUpoWwNkYvrugw9RuPWGVdDe8yMl.woff2"
   as="font"
   type="font/woff2"
   crossorigin
@@ -126,6 +126,9 @@ const imageURL = new URL(image, Astro.site).toString();
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 <meta name="apple-mobile-web-app-title" content={SITE_TITLE} />
+
+<!-- Optimize for bfcache -->
+<meta http-equiv="cache-control" content="public, max-age=0, must-revalidate" />
 
 <!-- JSON-LD Structured Data -->
 <script

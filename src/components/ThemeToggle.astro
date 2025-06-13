@@ -140,7 +140,7 @@
   }
 
   // Set theme
-  function setTheme(theme: string) {
+  function setTheme(theme) {
     if (theme === 'light') {
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.classList.remove('dark');
@@ -186,6 +186,15 @@
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
     if (!localStorage.getItem(THEME_KEY)) {
       setTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
+  // Optimize for bfcache - restore theme on pageshow
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      // Page was restored from bfcache, reapply theme
+      const theme = getThemePreference();
+      setTheme(theme);
     }
   });
 </script>
