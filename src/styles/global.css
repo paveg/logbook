@@ -191,19 +191,19 @@ h6 {
   font-weight: 500;
 }
 h1 {
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-3xl);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: var(--line-height-tight);
   margin-bottom: var(--space-lg);
 }
 h2 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   font-weight: 500;
   letter-spacing: -0.01em;
 }
 h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 500;
 }
 h4 {
@@ -247,8 +247,69 @@ textarea {
 input {
   font-size: 16px;
 }
+/* テーブルスタイル */
 table {
   width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-lg) 0;
+  background: var(--color-bg);
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+  font-size: var(--font-size-sm);
+}
+
+th,
+td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  line-height: 1.4;
+}
+
+th {
+  background: var(--color-bg-alt);
+  font-weight: 600;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+tbody tr:hover {
+  background: var(--color-bg-alt);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* モバイル用テーブル対応 */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin: var(--space-lg) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-container table {
+  margin: 0;
+  min-width: 600px;
+}
+
+/* コンパクトテーブル用クラス */
+.table-compact th,
+.table-compact td {
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.875rem;
+}
+
+/* ノーラップテーブル用クラス（特定ケース用） */
+.table-nowrap th,
+.table-nowrap td {
+  white-space: nowrap;
 }
 img {
   max-width: 100%;
@@ -266,7 +327,7 @@ code {
   font-weight: 400;
 }
 pre {
-  padding: var(--space-lg);
+  padding: var(--space-md);
   background-color: var(--color-bg-alt);
   border-left: 2px solid var(--color-border);
   border-radius: var(--border-radius-sm);
@@ -294,11 +355,11 @@ hr {
   border-top: 1px solid var(--color-border);
   margin: var(--space-xl) 0;
 }
-/* Mobile-specific optimizations */
-@media (max-width: 720px) {
+/* Tablet and Mobile - Primary breakpoint */
+@media (max-width: 768px) {
   body {
-    /* Ensure minimum 16px font size to prevent zoom on iOS */
-    font-size: max(var(--font-size-base), 16px);
+    /* Slightly smaller base font for better density */
+    font-size: 0.9375rem; /* 15px */
   }
 
   .container {
@@ -310,27 +371,52 @@ hr {
   }
 
   h1 {
-    font-size: var(--font-size-3xl);
+    font-size: 1.75rem; /* 28px */
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+    /* Allow natural wrapping for long titles */
+    word-break: keep-all; /* Prevents breaking within words */
+    overflow-wrap: break-word;
   }
 
   h2 {
-    font-size: var(--font-size-xl);
+    font-size: 1.375rem; /* 22px */
   }
 
   h3 {
-    font-size: var(--font-size-lg);
+    font-size: 1.125rem; /* 18px */
+  }
+
+  /* Reduce paragraph spacing on mobile */
+  p,
+  .prose p {
+    margin-bottom: var(--space-md);
   }
 
   /* Ensure form inputs don't trigger zoom */
   input,
   textarea,
   select {
-    font-size: max(var(--font-size-base), 16px);
+    font-size: 16px; /* Explicit 16px to prevent zoom */
+  }
+
+  /* モバイル用テーブル調整 */
+  table {
+    font-size: 0.875rem;
+  }
+
+  th,
+  td {
+    padding: var(--space-xs) var(--space-sm);
   }
 }
 
-/* Small mobile screens */
+/* Smartphone - Secondary breakpoint */
 @media (max-width: 480px) {
+  body {
+    font-size: 0.875rem; /* 14px */
+  }
+
   .container {
     padding: 0 var(--space-sm);
   }
@@ -340,15 +426,33 @@ hr {
   }
 
   h1 {
-    font-size: var(--font-size-2xl);
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.15;
   }
 
   h2 {
-    font-size: var(--font-size-xl);
+    font-size: 1.25rem; /* 20px */
   }
 
   h3 {
-    font-size: var(--font-size-lg);
+    font-size: 1rem; /* 16px */
+  }
+
+  /* Ensure form inputs still prevent zoom */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
+  }
+
+  /* スマートフォン用テーブル調整 */
+  table {
+    font-size: 0.8125rem; /* 13px */
+  }
+
+  th,
+  td {
+    padding: var(--space-xs);
   }
 }
 
