@@ -43,6 +43,7 @@
   --font-size-xl: 1.5rem; /* 24px */
   --font-size-2xl: 2rem; /* 32px */
   --font-size-3xl: 2.5rem; /* 40px */
+  --font-size-4xl: 3rem; /* 48px */
 
   /* Line heights */
   --line-height-tight: 1.25;
@@ -190,16 +191,20 @@ h6 {
   font-weight: 500;
 }
 h1 {
-  font-size: var(--font-size-3xl);
-  font-weight: 300;
+  font-size: var(--font-size-4xl);
+  font-weight: 600;
   letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+  margin-bottom: var(--space-lg);
 }
 h2 {
   font-size: var(--font-size-2xl);
-  font-weight: 400;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 h3 {
   font-size: var(--font-size-xl);
+  font-weight: 500;
 }
 h4 {
   font-size: var(--font-size-lg);
@@ -305,7 +310,15 @@ hr {
   }
 
   h1 {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-3xl);
+  }
+
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  h3 {
+    font-size: var(--font-size-lg);
   }
 
   /* Ensure form inputs don't trigger zoom */
@@ -327,10 +340,14 @@ hr {
   }
 
   h1 {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-2xl);
   }
 
   h2 {
+    font-size: var(--font-size-xl);
+  }
+
+  h3 {
     font-size: var(--font-size-lg);
   }
 }

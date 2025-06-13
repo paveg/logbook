@@ -10,8 +10,6 @@
 >
   <svg
     class="sun-icon"
-    width="20"
-    height="20"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -31,8 +29,6 @@
   </svg>
   <svg
     class="moon-icon"
-    width="20"
-    height="20"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -51,15 +47,14 @@
     color: var(--color-text-light);
     cursor: pointer;
     padding: var(--space-xs);
-    margin-left: var(--space-sm);
     border-radius: var(--border-radius-sm);
     transition: all 0.2s ease;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    height: auto;
+    width: 24px;
+    height: 24px;
     font-size: var(--font-size-sm);
     line-height: 1;
   }
@@ -78,6 +73,8 @@
   .moon-icon {
     position: absolute;
     transition: all 0.2s ease;
+    width: 20px;
+    height: 20px;
   }
 
   /* ライトモード時：太陽アイコンを表示 */
@@ -111,6 +108,22 @@
   html[data-theme='dark'] .moon-icon {
     opacity: 1;
     transform: rotate(0deg) scale(1);
+  }
+
+  /* モバイルビューでのサイズ調整 */
+  @media (max-width: 720px) {
+    .theme-toggle {
+      width: 24px;
+      height: 24px;
+      padding: var(--space-sm);
+      margin-left: 0;
+    }
+
+    .sun-icon,
+    .moon-icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 </style>
 
