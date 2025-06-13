@@ -377,7 +377,7 @@ code {
   font-family: 'Roboto Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-weight: 400;
 }
-pre {
+pre:not(.astro-code) {
   position: relative;
   padding: var(--space-md);
   background-color: var(--color-bg-alt);
@@ -393,36 +393,58 @@ pre {
   padding-top: calc(var(--space-md) + 28px);
 }
 
-/* Accessible syntax highlighting theme switching */
+/* Syntax highlighting with CSS variable theme support */
 .astro-code {
-  background-color: var(--color-bg-alt) !important;
   border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  position: relative;
+  /* Reserve space for copy button */
+  padding-top: calc(var(--space-md) + 28px);
 }
 
-/* Light theme syntax highlighting */
-:root .astro-code[data-theme='github-light'] {
-  display: block;
-}
-:root .astro-code[data-theme='github-dark-high-contrast'] {
-  display: none;
+/* Light theme: Min Light colors */
+:root .astro-code {
+  color: var(--shiki-light, #24292eff);
+  background: var(--shiki-light-bg, #ffffff);
 }
 
-/* Dark theme syntax highlighting */
-[data-theme='dark'] .astro-code[data-theme='github-light'] {
-  display: none;
-}
-[data-theme='dark'] .astro-code[data-theme='github-dark-high-contrast'] {
-  display: block;
+/* Dark theme: Min Dark colors */
+[data-theme='dark'] .astro-code {
+  color: var(--shiki-dark, #b392f0);
+  background: var(--shiki-dark-bg, #1b1f23);
 }
 
-/* Auto dark mode based on system preference */
+/* Auto dark mode */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .astro-code[data-theme='github-light'] {
-    display: none;
+  :root:not([data-theme='light']) .astro-code {
+    color: var(--shiki-dark, #b392f0);
+    background: var(--shiki-dark-bg, #1b1f23);
   }
-  :root:not([data-theme='light']) .astro-code[data-theme='github-dark-high-contrast'] {
-    display: block;
+}
+
+/* Preserve all syntax highlighting colors from Shiki */
+.astro-code span {
+  color: var(--shiki-light);
+}
+
+[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .astro-code span {
+    color: var(--shiki-dark);
   }
+}
+
+/* Minimal line height for better readability */
+.astro-code .line {
+  min-height: 1.6em;
 }
 pre > code {
   all: unset;
