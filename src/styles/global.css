@@ -393,36 +393,56 @@ pre {
   padding-top: calc(var(--space-md) + 28px);
 }
 
-/* Accessible syntax highlighting theme switching */
+/* Syntax highlighting with CSS variable theme support */
 .astro-code {
-  background-color: var(--color-bg-alt) !important;
   border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  padding: var(--space-md);
+  margin: var(--space-lg) 0;
+  position: relative;
+  /* Reserve space for copy button */
+  padding-top: calc(var(--space-md) + 28px);
 }
 
-/* Light theme syntax highlighting */
-:root .astro-code[data-theme='github-light'] {
-  display: block;
-}
-:root .astro-code[data-theme='github-dark-high-contrast'] {
-  display: none;
+/* VS Code Light/Dark Plus syntax highlighting */
+.astro-code {
+  background: #ffffff;
+  color: #000000;
 }
 
-/* Dark theme syntax highlighting */
-[data-theme='dark'] .astro-code[data-theme='github-light'] {
-  display: none;
-}
-[data-theme='dark'] .astro-code[data-theme='github-dark-high-contrast'] {
-  display: block;
+[data-theme='dark'] .astro-code {
+  background: #1e1e1e;
+  color: #d4d4d4;
 }
 
-/* Auto dark mode based on system preference */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) .astro-code[data-theme='github-light'] {
-    display: none;
+  :root:not([data-theme='light']) .astro-code {
+    background: #1e1e1e;
+    color: #d4d4d4;
   }
-  :root:not([data-theme='light']) .astro-code[data-theme='github-dark-high-contrast'] {
-    display: block;
+}
+
+/* Let Shiki handle all syntax colors via CSS variables */
+.astro-code span {
+  color: var(--shiki-light);
+}
+
+[data-theme='dark'] .astro-code span {
+  color: var(--shiki-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .astro-code span {
+    color: var(--shiki-dark);
   }
+}
+
+/* Minimal line height for better readability */
+.astro-code .line {
+  min-height: 1.6em;
 }
 pre > code {
   all: unset;
