@@ -115,6 +115,19 @@ const ogImageUrl = Astro.props.slug
         justify-content: center;
       }
 
+      /* アンカーリンクが画面外にはみ出さないようにする */
+      @media (max-width: 720px) {
+        .prose h2,
+        .prose h3 {
+          position: relative;
+          padding-left: 1.5rem;
+        }
+
+        .anchor-link {
+          left: 0;
+        }
+      }
+
       .anchor-link:hover {
         color: var(--color-text);
         border-bottom: none;
@@ -125,11 +138,7 @@ const ogImageUrl = Astro.props.slug
           font-size: var(--font-size-2xl);
         }
 
-        .anchor-link {
-          left: -1.25rem;
-          width: 1rem;
-          height: 1rem;
-        }
+        /* アンカーリンクのサイズ調整は別途上記で定義 */
 
         .prose h2,
         .prose h3 {
