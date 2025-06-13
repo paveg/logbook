@@ -407,21 +407,21 @@ pre {
   padding-top: calc(var(--space-md) + 28px);
 }
 
-/* VS Code Light/Dark Plus syntax highlighting */
+/* GitHub Light/Dark syntax highlighting with proper theme switching */
 .astro-code {
-  background: #ffffff;
-  color: #000000;
+  background: #ffffff !important;
+  color: #24292f !important;
 }
 
 [data-theme='dark'] .astro-code {
-  background: #1e1e1e;
-  color: #d4d4d4;
+  background: #0d1117 !important;
+  color: #f0f6fc !important;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .astro-code {
-    background: #1e1e1e;
-    color: #d4d4d4;
+    background: #0d1117 !important;
+    color: #f0f6fc !important;
   }
 }
 
