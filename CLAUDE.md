@@ -173,16 +173,19 @@ git push -u origin feature/add-new-blog-post
 ## Performance Optimizations
 
 ### Font Loading Strategy
+
 - **Post-LCP font preloading**: Fonts are preloaded after Largest Contentful Paint to avoid blocking critical rendering
 - **CSS bundle optimization**: Font bundles reduced from 450KB to 16KB (96% reduction) using targeted @font-face declarations
 - **Japanese font support**: M PLUS Rounded 1c font with proper unicode-range for Japanese characters
 
 ### Build Optimizations
+
 - **Terser minification**: JavaScript minified with Terser for smaller bundle sizes
 - **Inline stylesheets**: Automatic inlining of critical CSS for better performance
 - **Manual chunks disabled**: Prevents bundle splitting for optimal loading
 
 ### Syntax Highlighting
+
 - **Themes**: Using `min-light` and `min-dark` for colorful, accessible code blocks
 - **Dual-theme support**: CSS variables automatically switch themes based on user preference
 - **Build-time processing**: Shiki generates syntax highlighting at build time (no runtime cost)
@@ -191,6 +194,7 @@ git push -u origin feature/add-new-blog-post
 ## OGP Image Generation
 
 ### Dynamic OG Images
+
 - **Route**: `/og/[...slug].png` generates OG images for all blog posts
 - **Technology**: Uses Satori (@vercel/og) for HTML/CSS to image conversion
 - **Font support**: M PLUS Rounded 1c font loaded for Japanese text in OG images
@@ -198,6 +202,7 @@ git push -u origin feature/add-new-blog-post
 - **Generation**: Static generation at build time for all blog posts
 
 ### OG Image Architecture
+
 ```typescript
 // src/pages/og/[...slug].png.ts
 // - Fetches blog post data
@@ -209,30 +214,37 @@ git push -u origin feature/add-new-blog-post
 ## Accessibility & Performance Guidelines
 
 ### WCAG Compliance
+
 - **Color contrast**: All text meets WCAG AA standards (minimum 4.5:1 ratio)
 - **Focus management**: Proper focus indicators for keyboard navigation
 - **Link accessibility**: Descriptive link text (avoid "Learn more", "Click here")
 - **Theme switching**: Automatic theme detection with manual override capability
 
 ### LCP Optimization
+
 - **Image priorities**: Hero images use `fetchpriority="high"` and `loading="eager"`
 - **Font loading**: Post-LCP font preloading prevents render blocking
 - **Critical request chains**: Minimized by async font loading and optimized resource hints
 
 ### bfcache Optimization
+
 - **Page restoration**: `pageshow` event listeners restore state after back/forward navigation
 - **Component reinitialization**: Theme toggle and copy buttons reinitialize on page restoration
 
 ## Important Development Reminders
 
 ### Performance Impact
+
 When making changes, always run performance checks:
+
 ```bash
 pnpm build && pnpm lighthouse
 ```
 
 ### Syntax Highlighting Themes
+
 Current themes are `min-light` and `min-dark`. When changing:
+
 1. Update `astro.config.mjs` themes
 2. Update CSS fallback colors in `global.css`
 3. Test both light and dark modes
