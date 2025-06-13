@@ -17,4 +17,17 @@ export default defineConfig({
       customPages: ['https://logbook-a9n.pages.dev/', 'https://logbook-a9n.pages.dev/blog/'],
     }),
   ],
+  build: {
+    inlineStylesheets: 'auto',
+  },
+  vite: {
+    build: {
+      minify: 'terser',
+      rollupOptions: {
+        output: {
+          manualChunks: undefined,
+        },
+      },
+    },
+  },
 });
