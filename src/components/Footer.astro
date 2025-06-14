@@ -16,8 +16,6 @@ const today = new Date();
             ></path>
           </svg>
         </a>
-      </div>
-      <div class="social-links">
         <a href="https://twitter.com/paveg_" target="_blank">
           <span class="sr-only">Follow me on X</span>
           <svg viewBox="0 0 24 24" aria-hidden="true" width="20" height="20" fill="currentColor">
@@ -63,7 +61,7 @@ const today = new Date();
 
   .footer-links {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--space-md);
     align-items: center;
   }
 
@@ -75,7 +73,6 @@ const today = new Date();
     color: var(--color-text-light);
     border-bottom: none;
     transition: color 0.2s ease;
-    padding-bottom: 0.5rem;
   }
 
   .footer-links a:hover {
@@ -88,38 +85,11 @@ const today = new Date();
     height: 1.25rem;
   }
 
-  .social-links {
-    display: flex;
-    gap: var(--space-md);
-    align-items: center;
-  }
-
-  .social-links a {
-    text-decoration: none;
-    color: var(--color-text-light);
-    border-bottom: none;
-    transition: color 0.2s ease;
-  }
-
-  .social-links a:hover {
-    color: var(--color-text);
-    border-bottom: none;
-  }
-
-  .social-links svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
   @media (max-width: 720px) {
     .footer-content {
       flex-direction: column;
       text-align: center;
       gap: var(--space-sm);
-    }
-
-    .footer-links {
-      gap: var(--space-md);
     }
   }
 </style>
