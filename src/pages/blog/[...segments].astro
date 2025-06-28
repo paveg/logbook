@@ -4,6 +4,8 @@ import BlogPost from '../../layouts/BlogPost.astro';
 import { render } from 'astro:content';
 import readingTime from 'reading-time';
 import TableOfContents from '../../components/TableOfContents.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import { getRelatedPosts } from '../../utils/relatedPosts.ts';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => {
@@ -31,9 +33,21 @@ const { Content, headings } = await render(post);
 // Calculate reading time
 const stats = readingTime(post.body || '');
 const readingTimeMinutes = Math.ceil(stats.minutes);
+
+// Get all posts for related posts calculation
+const allPosts = await getCollection('blog', ({ data }) => {
+  if (import.meta.env.PROD) {
+    return data.draft !== true;
+  }
+  return true;
+});
+
+// Get related posts
+const relatedPosts = getRelatedPosts(post, allPosts, 3);
 ---
 
 <BlogPost {...post.data} readingTime={readingTimeMinutes} slug={post.id}>
   <TableOfContents headings={headings} />
   <Content />
+  <RelatedPosts posts={relatedPosts} />
 </BlogPost>
