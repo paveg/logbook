@@ -1,0 +1,83 @@
+---
+export interface Props {
+  type: 'blog' | 'website';
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  author?: string;
+  publishDate?: Date;
+  modifiedDate?: Date;
+}
+
+const {
+  type,
+  title,
+  description,
+  url,
+  image,
+  author = 'funai',
+  publishDate,
+  modifiedDate,
+} = Astro.props;
+
+const site = Astro.site || 'https://logbook-a9n.pages.dev';
+const fullUrl = new URL(url, site).toString();
+const fullImageUrl = image ? new URL(image, site).toString() : undefined;
+
+let structuredData;
+
+if (type === 'blog') {
+  structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description: description,
+    url: fullUrl,
+    author: {
+      '@type': 'Person',
+      name: author,
+      url: site,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Logbook',
+      url: site,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': fullUrl,
+    },
+    ...(publishDate && { datePublished: publishDate.toISOString() }),
+    ...(modifiedDate && { dateModified: modifiedDate.toISOString() }),
+    ...(fullImageUrl && {
+      image: {
+        '@type': 'ImageObject',
+        url: fullImageUrl,
+        width: 1200,
+        height: 630,
+      },
+    }),
+  };
+} else {
+  structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: title,
+    description: description,
+    url: fullUrl,
+    author: {
+      '@type': 'Person',
+      name: author,
+      url: site,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Logbook',
+      url: site,
+    },
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
