@@ -14,9 +14,6 @@ importers:
       '@astrojs/mdx':
         specifier: ^4.3.0
         version: 4.3.0(astro@5.10.1(@types/node@24.0.7)(rollup@4.44.1)(terser@5.43.1)(typescript@5.8.3)(yaml@2.8.0))
-      '@astrojs/prefetch':
-        specifier: ^0.4.1
-        version: 0.4.1
       '@astrojs/rss':
         specifier: ^4.0.12
         version: 4.0.12
@@ -32,12 +29,6 @@ importers:
       astro:
         specifier: ^5.10.1
         version: 5.10.1(@types/node@24.0.7)(rollup@4.44.1)(terser@5.43.1)(typescript@5.8.3)(yaml@2.8.0)
-      husky:
-        specifier: ^9.1.7
-        version: 9.1.7
-      lint-staged:
-        specifier: ^16.1.2
-        version: 16.1.2
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -63,6 +54,12 @@ importers:
       eslint-plugin-astro:
         specifier: ^1.3.1
         version: 1.3.1(eslint@9.30.0)
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
+      lint-staged:
+        specifier: ^16.1.2
+        version: 16.1.2
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -107,10 +104,6 @@ packages:
     engines: {node: 18.20.8 || ^20.3.0 || >=22.0.0}
     peerDependencies:
       astro: ^5.0.0
-
-  '@astrojs/prefetch@0.4.1':
-    resolution: {integrity: sha512-bpC875BqeIuWVgqhi4X814ftzzbKocaLkiZczaj8k5J2SRpueIGkww3XmD+yY/Ekkm9j30aS3neVO6wSm4IJNA==}
-    deprecated: '@astrojs/prefetch is deprecated in favor of the builtin prefetch option. Please see the migration guide for more information: https://docs.astro.build/en/guides/prefetch/#migrating-from-astrojsprefetch'
 
   '@astrojs/prism@3.3.0':
     resolution: {integrity: sha512-q8VwfU/fDZNoDOf+r7jUnMC2//H2l0TuQ6FkGJL8vD8nw/q5KiL3DS1KKBI3QhI9UQhpJ5dc7AtqfbXWuOgLCQ==}
@@ -3176,10 +3169,6 @@ packages:
   third-party-web@0.24.5:
     resolution: {integrity: sha512-1rUOdMYpNTRajgk1F7CmHD26oA6rTKekBjHay854J6OkPXeNyPcR54rhWDaamlWyi9t2wAVPQESdedBhucmOLA==}
 
-  throttles@1.0.1:
-    resolution: {integrity: sha512-fab7Xg+zELr9KOv4fkaBoe/b3L0GMGLd0IBSCn16GoE/Qx6/OfCr1eGNyEcDU2pUA79qQfZ8kPQWlRuok4YwTw==}
-    engines: {node: '>=6'}
-
   through@2.3.8:
     resolution: {integrity: sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==}
 
@@ -3833,10 +3822,6 @@ snapshots:
       vfile: 6.0.3
     transitivePeerDependencies:
       - supports-color
-
-  '@astrojs/prefetch@0.4.1':
-    dependencies:
-      throttles: 1.0.1
 
   '@astrojs/prism@3.3.0':
     dependencies:
@@ -7604,8 +7589,6 @@ snapshots:
       b4a: 1.6.7
 
   third-party-web@0.24.5: {}
-
-  throttles@1.0.1: {}
 
   through@2.3.8: {}
 
