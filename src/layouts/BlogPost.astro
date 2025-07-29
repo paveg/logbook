@@ -25,7 +25,10 @@ const articleKeywords = [
 ].join(', ');
 
 // Create the full URL for this article
-const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
+// In development, use localhost URL; in production, use the configured site URL
+const articleUrl = import.meta.env.DEV
+  ? `${Astro.url.origin}${Astro.url.pathname}`
+  : new URL(Astro.url.pathname, Astro.site).href;
 
 // Generate OGP image URL based on slug
 const ogImageUrl = Astro.props.slug
