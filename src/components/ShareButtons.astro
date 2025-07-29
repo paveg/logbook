@@ -6,6 +6,11 @@ interface Props {
 
 const { title, url } = Astro.props;
 
+// Debug: Log the props in development
+if (import.meta.env.DEV) {
+  console.log('ShareButtons props:', { title, url });
+}
+
 // URL encode the parameters
 const encodedTitle = encodeURIComponent(title);
 const encodedUrl = encodeURIComponent(url);
@@ -13,6 +18,11 @@ const encodedUrl = encodeURIComponent(url);
 // Social media share URLs
 const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
 const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodedUrl}`;
+
+// Debug: Log the constructed URLs in development
+if (import.meta.env.DEV) {
+  console.log('Share URLs:', { twitterShareUrl, hatenaShareUrl });
+}
 ---
 
 <div class="share-buttons">
@@ -60,7 +70,7 @@ const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodedUrl}`;
     height: 2.5rem;
     border-radius: 50%;
     border: 1px solid var(--color-border);
-    color: var(--color-text-light);
+    color: var(--color-text);
     background-color: transparent;
     text-decoration: none;
     transition: all 0.15s ease;
