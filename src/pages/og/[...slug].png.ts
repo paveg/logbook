@@ -138,8 +138,8 @@ export const GET: APIRoute = async ({ params }) => {
       fonts.push({
         name: 'M PLUS Rounded 1c',
         data: fontData,
-        style: 'normal',
-        weight: 400,
+        style: 'normal' as const,
+        weight: 400 as const,
       });
     }
   } catch (error) {
