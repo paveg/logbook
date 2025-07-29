@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an Astro-based blog/logbook website using Astro v5.8.1. The site is configured for Japanese language (`lang="ja"`) and is set up for deployment to Cloudflare Pages.
+This is an Astro-based blog/logbook website using Astro v5.10.1. The site is configured for Japanese language (`lang="ja"`) and is set up for deployment to Cloudflare Pages.
 
 ## Commands
 
@@ -20,6 +20,7 @@ This is an Astro-based blog/logbook website using Astro v5.8.1. The site is conf
 - **`pnpm lint:fix`** - Run ESLint and automatically fix issues
 - **`pnpm format`** - Format all files with Prettier
 - **`pnpm format:check`** - Check if files are formatted correctly
+- **`pnpm validate-content`** - Validate blog post frontmatter and content structure
 
 ### Performance Testing
 
@@ -69,6 +70,9 @@ Performance thresholds configured:
 - **`ReadingTime.astro`**: Displays estimated reading time for posts
 - **`CopyButton.astro`**: Accessible copy-to-clipboard functionality for code blocks
 - **`TableOfContents.astro`**: Automatic table of contents generation for blog posts
+- **`StructuredData.astro`**: JSON-LD structured data for SEO optimization
+- **`RelatedPosts.astro`**: Smart content recommendations using tags, categories, and recency scoring
+- **`ShareButtons.astro`**: Social sharing functionality for X (Twitter) and Hatena Bookmark
 
 ### Site Configuration
 
@@ -89,6 +93,37 @@ Site constants in `src/consts.ts`:
 - **RSS feed**: Available at `/rss.xml`
 - Compatible with any static hosting provider
 
+## Content Validation & Quality Assurance
+
+### Automated Content Validation
+
+- **Content validation script**: `scripts/validate-content.js` checks all blog posts for:
+  - Required frontmatter fields (title, description, pubDate)
+  - Valid date formats
+  - Non-empty content after frontmatter
+  - TODO/FIXME comments (fails if found)
+- **Run validation**: `pnpm validate-content`
+- **CI Integration**: Validation runs automatically via pre-commit hooks
+
+### Pre-commit Hooks (Husky + lint-staged)
+
+Automatically runs on every commit:
+
+1. **Prettier formatting** on staged files (`*.{js,ts,astro,md}`)
+2. **ESLint fixes** on staged files
+3. **Content validation** for blog posts
+
+Configuration in `package.json`:
+
+```json
+"lint-staged": {
+  "*.{js,ts,astro,md}": [
+    "prettier --write",
+    "eslint --fix"
+  ]
+}
+```
+
 ## Git Workflow
 
 ### Branch Strategy
@@ -107,7 +142,9 @@ Site constants in `src/consts.ts`:
 5. **Before finishing work**, always:
    - Run `pnpm lint` and fix any issues
    - Run `pnpm format` to ensure consistent formatting
+   - Run `pnpm validate-content` for blog post changes
    - Commit these changes if any files were modified
+   - Note: Pre-commit hooks will automatically run these checks
 6. **Push the feature branch**:
 
    ```bash
@@ -130,9 +167,10 @@ git checkout feature/existing-related-work
 git add .
 git commit -m "Add new blog post about TypeScript"
 
-# 4. Before finishing, run lint and format
+# 4. Before finishing, run quality checks
 pnpm lint
 pnpm format
+pnpm validate-content  # For blog post changes
 
 # 5. Commit any formatting changes
 git add .
